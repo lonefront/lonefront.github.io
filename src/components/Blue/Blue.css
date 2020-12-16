@@ -1,3 +1,10 @@
 #blue {
   background: blue;
+  opacity: 100%;
 }
+
+.h1 {
+  color: white;
+  background-color: white;
+}
+

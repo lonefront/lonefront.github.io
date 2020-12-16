@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import './Black.css'
+import Buttons from '../Buttons/Buttons'
 
-class Blue extends Component {
+class Black extends Component {
   render(){
     return(
       <>
-        <div id="black" className="screen" onWheel={this.props.scroll} style={this.props.style}></div>
+        <div id="black" className="screen" onWheel={this.props.scroll} style={this.props.style}>
+        <Buttons click={(e)=>this.props.click(e, 'black')} hover={this.props.hover}></Buttons>        
+        </div>
       </>
     )
   }
 }
-export default Blue;
+export default Black;
