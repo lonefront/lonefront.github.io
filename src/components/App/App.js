@@ -31,7 +31,11 @@ class App extends Component {
     green: '-100%',
     orange: '-100%',
     axis: 'null',
-    activePg: 'blue'
+    activePg: 'blue',
+    up: false,
+    down: false,
+    left: false,
+    right: false
   }
 
   turn = (pg) => {
@@ -157,17 +161,13 @@ class App extends Component {
     let v = e.deltaY
     // h is horizontal axis
     let h = e.deltaX
-    console.log('AXIS VELOCITY X:', v, 'AND Y:', h);
+    // console.log('AXIS VELOCITY X:', v, 'AND Y:', h);
     // vertical axis check
     if (v > vel && v < 20){
       this.setState({axis:'bottom'});
-      v = 0;
-      h = 0;
       // console.log('axis is:', this.state.axis);
     } else if (v < nVel && v < 0){
       this.setState({axis:'top'});
-      v = 0;
-      h = 0;
       // console.log('axis is:', this.state.axis);
     }
     // horizontal axis check
@@ -182,9 +182,6 @@ class App extends Component {
     }
   }
 
-  handleClick = (e, str) => {
-    // this.turn(str);
-  }
 
   // hoverSet = (e) => {
   //   let axis = e.target.id;
@@ -204,28 +201,59 @@ class App extends Component {
   press = (e) => {
     // console.log(e.key, 'pressed');
     e = e || window.event;
+    let a = this.state.activePg;
     if (e.keyCode === 38) {
-      this.setState({axis: 'top'})
-      this.turn(this.state.activePg);
+      if (a === 'red' || a === 'yellow' || a === 'black'){
+        this.setState({axis: 'top'})
+        this.turn(this.state.activePg);
+        this.setState({up: true});
+        setTimeout(this.turnOff, 300);
+      } else {
+        // do nothing
+      }
     }
     else if (e.keyCode === 40) {
-      this.setState({axis: 'bottom'});
-      this.turn(this.state.activePg);
-      console.log(this.state.activePg);
+      if (a === 'blue' || a === 'red' || a === 'yellow' || a === 'black'){
+        this.setState({axis: 'bottom'});
+        this.turn(this.state.activePg);
+        this.setState({down: true});
+        setTimeout(this.turnOff, 300);  
+      } else {
+        // fugghetaboutit
+      }
     }
     else if (e.keyCode === 37) {
-      this.setState({axis: 'left'});
-      this.turn(this.state.activePg);
-      console.log(this.state.activePg);
+      if (a === 'blue' || a === 'orange'){
+        this.setState({axis: 'left'});
+        this.turn(this.state.activePg);
+        this.setState({left: true});
+        setTimeout(this.turnOff, 300);  
+      } else {
+        // nada
+      }
     }
     else if (e.keyCode === 39) {
-      this.setState({axis: 'right'});
-      this.turn(this.state.activePg);
-      console.log(this.state.activePg);
+      if (a === 'green' || a === 'red'){
+        this.setState({axis: 'right'});
+        this.turn(this.state.activePg);
+        this.setState({right: true});
+        setTimeout(this.turnOff, 300);  
+      } else {
+        // return nothing
+      }
+    }
+    else {
+      // do nothing
     }
     // this.turn(this.state.activePg);
   }
 
+  turnOff = (e) => {
+    this.setState({up: false});
+    this.setState({down: false});
+    this.setState({left: false});
+    this.setState({right: false});
+  }
   render() {
     // document.onkeydown = checkKey;
     //   function checkKey(e) {
@@ -234,8 +262,8 @@ class App extends Component {
     //   }
     return (
       <>
-        <Header></Header>
-        <Blue page={this.state.activePg} scroll={this.scroll} hover={this.hoverSet}/>
+        <Header/>
+        <Blue page={this.state.activePg} up={this.state.up} down={this.state.down} left={this.state.left} right={this.state.right} scroll={this.scroll}/>
         <Green page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{left: this.state.green}}/>
         <Red page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.red}}/>
         <Orange page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{right: this.state.orange}}/>

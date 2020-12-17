@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Red.css'
-import Buttons from '../Buttons/Buttons'
+// import Buttons from '../Buttons/Buttons'
 
 class Red extends Component {
 
@@ -8,7 +8,7 @@ class Red extends Component {
     return(
       <>
         <div id="red" className="screen" onWheel={this.props.scroll} style={this.props.style}>
-        <Buttons page={this.props.page} click={(e)=>this.props.click(e, 'red')} hover={this.props.hover}></Buttons>        
+        {/* <Buttons page={this.props.page} click={(e)=>this.props.click(e, 'red')} hover={this.props.hover}></Buttons>         */}
         </div>
       </>
     )

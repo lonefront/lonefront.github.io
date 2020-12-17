@@ -3,6 +3,7 @@ import './Buttons.css'
 
 class Buttons extends Component {
 
+
   // componentDidMount(){
   //   // console.log(this.props.page);
   //   document.onkeydown = checkKey;
@@ -38,10 +39,10 @@ class Buttons extends Component {
   render(){
     return(
       <>
-        <div id="btn-up" className="btn-ud"></div>
-        <div id="btn-down" className="btn-ud"></div>
-        <div id="btn-left" className="btn-lr"></div>
-        <div id="btn-right" className="btn-lr"></div>
+        <div id="btn-up" className={this.props.up ? 'btn-up-on' : 'btn-up-off'}></div>
+        <div id="btn-down" className={this.props.down ? 'btn-down-on' : 'btn-down-off'}></div>
+        <div id="btn-left" className={this.props.left ? 'btn-left-on' : 'btn-left-off'}></div>
+        <div id="btn-right" className={this.props.right ? 'btn-right-on' : 'btn-right-off'}></div>
       </>
     )
   }
