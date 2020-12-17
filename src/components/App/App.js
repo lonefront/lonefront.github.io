@@ -7,6 +7,7 @@ import Green from '../Green/Green'
 import Black from '../Black/Black'
 import Orange from '../Orange/Orange'
 import Header from '../Header/Header'
+import Margin from '../Margin/Margin'
 
 
 
@@ -261,15 +262,17 @@ class App extends Component {
     //     // console.log(e);
     //   }
     return (
-      <>
+      <div id="frame">
+        
         <Header/>
+        <Margin/>
         <Blue page={this.state.activePg} up={this.state.up} down={this.state.down} left={this.state.left} right={this.state.right} scroll={this.scroll}/>
         <Green page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{left: this.state.green}}/>
         <Red page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.red}}/>
         <Orange page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{right: this.state.orange}}/>
         <Yellow page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.yellow}}/>
         <Black page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.black}}/>
-      </>
+      </div>
       );  
   }
 }
