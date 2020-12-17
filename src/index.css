@@ -1,11 +1,28 @@
-body {
+html {
+  overflow: hidden;
   /* height: 100%; */
+}
+body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  overflow: auto;
+  /* height: 100%; */
+  /* overflow-anchor: auto; */
+  /* backup */
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  font-family: 'Metastandard';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Metastandard'), url(../src/fonts/Metastandard-Mono.otf) format('opentype');
 }
 
 code {

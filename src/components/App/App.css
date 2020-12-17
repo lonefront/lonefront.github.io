@@ -7,3 +7,9 @@
   z-index: -1;
 }
 
+* {
+  font-family: 'Metastandard', serif;
+  color: white;
+  /* z-index: 0; */
+}
+

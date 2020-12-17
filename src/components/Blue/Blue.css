@@ -1,6 +1,9 @@
 #blue {
   background: blue;
   opacity: 100%;
+  background-image: url("../../assets/template.png");
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .h1 {

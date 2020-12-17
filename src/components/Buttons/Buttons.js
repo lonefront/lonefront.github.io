@@ -3,6 +3,14 @@ import './Buttons.css'
 
 class Buttons extends Component {
 
+  // componentDidMount(){
+  //   console.log(this.props.page);
+  // }
+
+  componentDidUpdate(){
+    console.log(this.props.page);
+  }
+
   render(){
     return(
       <>

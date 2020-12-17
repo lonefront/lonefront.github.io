@@ -7,7 +7,7 @@ class Green extends Component {
     return(
       <>
         <div id="green" className="screen" onWheel={this.props.scroll} style={this.props.style}>
-        <Buttons click={(e)=>this.props.click(e, 'green')} hover={this.props.hover}></Buttons>
+        <Buttons page={this.props.page} click={(e)=>this.props.click(e, 'green')} hover={this.props.hover}></Buttons>
         </div>
         
       </>

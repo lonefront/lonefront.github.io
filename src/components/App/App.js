@@ -6,13 +6,13 @@ import Yellow from '../Yellow/Yellow'
 import Green from '../Green/Green'
 import Black from '../Black/Black'
 import Orange from '../Orange/Orange'
-// import Buttons from '../Buttons/Buttons'
+import Header from '../Header/Header'
 
 class App extends Component {
 
-  componentDidMount(){
-    this.setState({activePg: 'blue'});
-  }
+  // componentDidMount(){
+  //   this.setState({activePg: 'blue'});
+  // }
 
   state = {
     red: '-100%',
@@ -21,78 +21,89 @@ class App extends Component {
     green: '-100%',
     orange: '-100%',
     axis: 'null',
-    activePg: ''
+    activePg: 'blue'
   }
 
   turn = (pg) => {
     // where pg is pANEL PAgE
     // axis becomes shorthand for axis state
     let axis = this.state.axis
-    console.log('turning', pg, 'page from', this.state.activePg);
     ///- blue page -\\\
     if (pg === 'blue' && axis === 'bottom'){
       // nav to red, scroll down
       this.setState({red: '0%'});
       this.setState({axis: 'null'});
+      this.setState({activePg: 'red'});
     }
     ///- red page -\\\
     else if (pg === 'red' && axis === 'top'){
       // nav back to blue
       this.setState({red:'-100%'});
       this.setState({axis: 'null'});
+      this.setState({activePg: 'blue'});
     } 
     else if (pg === 'red' && axis === 'bottom'){
       // nav to yellow, scroll down
       this.setState({yellow: '0%'});
       this.setState({axis: 'null'});
+      this.setState({activePg: 'yellow'});
     }
     ///- yellow page -\\\
     else if (pg === 'yellow' && axis === 'top'){
       // nav back to red
-      this.setState({yellow: '-100%', activePg: 'red'});
+      this.setState({yellow: '-100%'});
       this.setState({axis: 'null'});
+      this.setState({activePg: 'red'});
     }
     else if (pg === 'yellow' && axis === 'bottom'){
       // nav to black
-      this.setState({black:'0%', activePg: 'black'});
+      this.setState({black:'0%'});
       this.setState({axis: 'null'});
+      this.setState({activePg: 'black'});
     }
     ///- green page -\\\
     else if (pg === 'blue' && axis === 'left'){
       // nav to green
-      this.setState({green: '0%', activePg: 'green'});
+      this.setState({green: '0%'});
       this.setState({axis: 'null'});
+      this.setState({activePg: 'green'});
     }
     else if (pg === 'green' && axis === 'right'){
       // nav back to blue
       this.setState({green: '-100%'});
       this.setState({axis: 'null'});
+      this.setState({activePg: 'blue'});
     }
     ///- orange page -\\\
     else if (pg === 'red' && axis === 'right'){
       // nav to orange
       this.setState({orange: '0%'});
       this.setState({axis: 'null'});
+      this.setState({activePg: 'orange'});
     }
     else if (pg === 'orange' && axis === 'left'){
-      // nav back to prev
+      // nav back to red
       this.setState({orange: '-100%'});
       this.setState({axis: 'null'});
+      this.setState({activePg: 'red'});
     } 
     ///- black page -\\\
     else if (pg === 'black' && axis === 'top'){
       // nav back to yellow
       this.setState({black: '-100%'});
-      this.setState({axis: 'null'});   
+      this.setState({axis: 'null'}); 
+      this.setState({activePg: 'yellow'});  
     }
     else if (pg === 'black' && axis === 'bottom'){
       // nav back to blue
-      this.setState({red: '-100%',yellow: '-100%',black: '-100%'});
-      this.setState({axis: 'null'});  
+      this.setState({red: '-100%', yellow: '-100%', black: '-100%'});
+      this.setState({axis: 'null'});
+      this.setState({activePg: 'blue'});  
     }      
   }
 
   scroll = e => {
+    this.setState({axis: ''})
     // 'div' targets div element name to 'turn page'
     let div = e.target.id
     switch (div) {
@@ -121,36 +132,35 @@ class App extends Component {
         this.turn(div);
         break;
       default:
-        console.log('hi :)');
+        // do nothing
     }
   }
 
   axis = e => {
     // vel is animation velocity
-    const vel = 30;
-    const nVel = -30;
+    const vel = 15;
+    const nVel = -15;
     // v is vertical axis
     let v = e.deltaY
     // h is horizontal axis
     let h = e.deltaX
-    console.log(v, h);
     // vertical axis check
     if (v > vel){
       this.setState({axis:'bottom'});
-      console.log(this.state.axis, v);
-    } else if (v < nVel){
+      // console.log('axis is:', this.state.axis);
+    } else if (v < nVel && v < 0){
       this.setState({axis:'top'});
-      console.log(this.state.axis, v);
+      // console.log('axis is:', this.state.axis);
     }
     // horizontal axis check
     if (h > vel){
       this.setState({axis:'right'});
-      // console.log(this.state.axis, h);
-    } else if (h < nVel){
+      // console.log('axis is:', this.state.axis);
+    } else if (h < nVel && h < 0){
       this.setState({axis:'left'})
-      // console.log(this.state.axis, h);
+      // console.log('axis is:', this.state.axis);
     } else {
-      console.log('default case');
+      return 0;
     }
   }
 
@@ -169,24 +179,20 @@ class App extends Component {
     } else if (axis === 'btn-right'){
       this.setState({axis: 'right'});
     } else {
-      console.log('hovering', e.target.id);
+      return 0;
     }
-    // console.log('expecting parent div:', e.parent.id)
   }
-
-  // setPanelState = (e) => {
-  //   console.log(e.target.id);
-  // }
 
   render() {
     return (
       <>
-        <Blue scroll={this.scroll} click={this.handleClick} hover={this.hoverSet}/>
-        <Green scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{left: this.state.green}}/>
-        <Red scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.red}}/>
-        <Orange scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{right: this.state.orange}}/>
-        <Yellow scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.yellow}}/>
-        <Black scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.black}}/>
+        <Header></Header>
+        <Blue page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet}/>
+        <Green page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{left: this.state.green}}/>
+        <Red page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.red}}/>
+        <Orange page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{right: this.state.orange}}/>
+        <Yellow page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.yellow}}/>
+        <Black page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.black}}/>
       </>
       );  
   }
