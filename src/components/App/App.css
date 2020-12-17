@@ -3,13 +3,13 @@
   width: 100%;
   height: 100%;
   bottom: 0%;
-  transition: all 1s;
+  transition: all 500ms;
   z-index: -1;
 }
 
 * {
   font-family: 'Metastandard', serif;
-  color: white;
-  /* z-index: 0; */
+  color:antiquewhite;
+  
 }
 
