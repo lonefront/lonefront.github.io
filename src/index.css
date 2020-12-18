@@ -1,10 +1,12 @@
 html {
   overflow: hidden;
+  overscroll-behavior-x: none;
   /* height: 100%; */
 }
 body {
   margin: 0;
   overflow: auto;
+  overscroll-behavior-x: none;
   /* height: 100%; */
   /* overflow-anchor: auto; */
   /* backup */
