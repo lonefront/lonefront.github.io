@@ -1,108 +1,76 @@
-.btn-left-off {
+#btn-left-off {
   /* position: absolute; */
-  height: 100vh;
-  width: 3%;
-  background: black;
-  transition: all 1200ms;
-  opacity: 0%;
-}
-.btn-right-off {
-  /* position: absolute; */
-  height: 100vh;
-  width: 3%;
-  background: black;
-  transition: all 1200ms;
-  opacity: 0%;
-}
-.btn-up-off {
-  position: absolute;
-  width: 100%;
-  height: 3%;
-  background: black;
-  transition: all 1200ms;
-  opacity: 0%;
-}
-.btn-down-off {
-  position: absolute;
-  width: 100%;
-  height: 3%;
-  background: black;
-  transition: all 1200ms;
-  opacity: 0%;
-}
-
-.btn-left-on {
-  /* position: absolute; */
-  height: 100vh;
-  width: 3%;
-  background: yellow;
-  transition: all 1s;
-  opacity: 100%;
-}
-
-.btn-right-on {
-  /* position: absolute; */
-  height: 100vh;
-  width: 3%;
-  background: yellow;
-  transition: all 1s;
-  opacity: 100%;
-}
-
-.btn-down-on {
-  position: absolute;
-  width: 100%;
-  height: 3%;
-  background: yellow;
-  transition: all 1ms;
-  opacity: 100%;
-}
-
-.btn-up-on {
-  position: absolute;
-  width: 100%;
-  height: 3%;
-  background: yellow;
-  transition: all 1ms;
-  opacity: 100%;
-}
-
-/* 
-.btn-lr:hover{
-  opacity: 100%;
-  background: red;
-} */
-
-/* .btn-lr:active {
-  opacity: 100%;
-  background: yellow;
-  transition: all 1ms;
-} */
-
-/* .btn-ud:hover{
-  opacity: 100%;
-  background: red;
-} */
-
-/* .btn-ud:active {
-  opacity: 100%;
-  background: yellow;
-  transition: all 1ms;
-} */
-
-
-#btn-right {
-  float: right;
-}
-
-#btn-left {
   float: left;
+  height: 100vh;
+  width: 3%;
+  background: black;
+  transition: all 1200ms;
+  opacity: 0%;
 }
-
-#btn-down {
-  bottom: 0%;
+#btn-right-off {
+  /* position: absolute; */
+  float: right;
+  height: 100vh;
+  width: 3%;
+  background: black;
+  transition: all 1200ms;
+  opacity: 0%;
 }
-
-#btn-up {
+#btn-up-off {
   top: 0%;
+  position: absolute;
+  width: 100%;
+  height: 3%;
+  background: black;
+  transition: all 1200ms;
+  opacity: 0%;
+}
+#btn-down-off {
+  bottom: 0%;
+  position: absolute;
+  width: 100%;
+  height: 3%;
+  background: black;
+  transition: all 1200ms;
+  opacity: 0%;
+}
+
+#btn-left-on {
+  /* position: absolute; */
+  float: left;
+  height: 100vh;
+  width: 3%;
+  background: yellow;
+  transition: all 1s;
+  opacity: 100%;
+}
+
+#btn-right-on {
+  /* position: absolute; */
+  float: right;
+  height: 100vh;
+  width: 3%;
+  background: yellow;
+  transition: all 1s;
+  opacity: 100%;
+}
+
+#btn-down-on {
+  bottom: 0%;
+  position: absolute;
+  width: 100%;
+  height: 3%;
+  background: yellow;
+  transition: all 1ms;
+  opacity: 100%;
+}
+
+#btn-up-on {
+  top: 0%;
+  position: absolute;
+  width: 100%;
+  height: 3%;
+  background: yellow;
+  transition: all 1ms;
+  opacity: 100%;
 }
