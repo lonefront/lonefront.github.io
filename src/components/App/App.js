@@ -254,18 +254,24 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="container">
-        <div className="container-center">
+      <div id="container">
+        <div id="container-center" className="screen">
           <Header/>
           <Blue page={this.state.activePg} up={this.state.up} down={this.state.down} left={this.state.left} right={this.state.right} scroll={this.scroll}/>
+          <div className="button">
+            <div id={this.state.up ? 'btn-up-on' : 'btn-up-off'}></div>
+            <div id={this.state.down ? 'btn-down-on' : 'btn-down-off'}></div>
+            <div id={this.state.left ? 'btn-left-on' : 'btn-left-off'}></div>
+            <div id={this.state.right ? 'btn-right-on' : 'btn-right-off'}></div>
+          </div>
           <Green page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{left: this.state.green}}/>
           <Red page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.red}}/>
           <Orange page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{right: this.state.orange}}/>
           <Yellow page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.yellow}}/>
           <Black page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.black}}/>
         </div>
-        <div className="margin-left"></div>
-        <div className="margin-right"></div>
+        {/* <div className="margin-left"></div> */}
+        {/* <div className="margin-right"></div> */}
       </div>
       );  
   }
