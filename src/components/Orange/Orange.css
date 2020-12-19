@@ -1,5 +1,6 @@
 #orange {
   background: orange;
   opacity: 50%;
+  /* transition: all 1s; */
   /* right: -100%; */
 }

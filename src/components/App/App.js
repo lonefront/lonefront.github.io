@@ -92,7 +92,7 @@ class App extends Component {
     ///- green page -\\\
     else if (pg === 'blue' && axis === 'left'){
       // nav to green
-      this.setState({green: '25%'});
+      this.setState({green: '0%'});
       this.setState({axis: 'null'});
       this.setState({activePg: 'green'});
     }
@@ -105,7 +105,7 @@ class App extends Component {
     ///- orange page -\\\
     else if (pg === 'red' && axis === 'right'){
       // nav to orange
-      this.setState({orange: '25%'});
+      this.setState({orange: '0%'});
       this.setState({axis: 'null'});
       this.setState({activePg: 'orange'});
     }
@@ -270,7 +270,7 @@ class App extends Component {
           <Yellow page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.yellow}}/>
           <Black page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.black}}/>
         </div>
-        {/* <div className="margin-left"></div> */}
+        <div className="margin-left"></div>
         {/* <div className="margin-right"></div> */}
       </div>
       );  

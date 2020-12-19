@@ -1,9 +1,9 @@
 .screen {
-  position: fixed;
+  position: absolute;
   width: 100vh;
   height: 100vh;
   bottom: 0%;
-  left: 25%;
+  /* left: 25%; */
   transition: all 500ms;
   /* z-index: -1; */
 }
@@ -13,7 +13,8 @@
 }
 #container {
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
+  justify-content: center;
 }
 #container-center {
   display: flex;
@@ -22,21 +23,21 @@
 .margin-left {
   background: black;
   position: fixed;
-  width: 15%;
+  /* width: 100vh; */
   height: 100%;
   bottom: 0%;
-  transition: all 500ms;
   /* z-index: -1; */
 }
-.margin-right {
+/* .margin-right {
   background: black;
   position: fixed;
   width: 15%;
   height: 100%;
   bottom: 0%;
   transition: all 500ms;
-  /* z-index: -1; */
-}
+  z-index: -1;
+} */
+
 .button {
   z-index: 1;
 }
