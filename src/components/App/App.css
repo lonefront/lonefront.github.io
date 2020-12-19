@@ -3,25 +3,22 @@
   width: 100vh;
   height: 100vh;
   bottom: 0%;
+  left: 25%;
   transition: all 500ms;
   /* z-index: -1; */
 }
-
 * {
   font-family: 'Metastandard', serif;
   color:antiquewhite;
 }
-
 #container {
   display: flex;
   flex-direction: row;
 }
-
 #container-center {
   display: flex;
   flex-direction: row;
 }
-
 .margin-left {
   background: black;
   position: fixed;
@@ -31,7 +28,6 @@
   transition: all 500ms;
   /* z-index: -1; */
 }
-
 .margin-right {
   background: black;
   position: fixed;
@@ -41,11 +37,9 @@
   transition: all 500ms;
   /* z-index: -1; */
 }
-
 .button {
   z-index: 1;
 }
-
 #btn-left-off {
   position: absolute;
   float: left;
@@ -83,7 +77,6 @@
   transition: all 1200ms;
   opacity: 0%;
 }
-
 #btn-left-on {
   position: absolute;
   left: 0%;
@@ -93,7 +86,6 @@
   transition: all 1ms;
   opacity: 100%;
 }
-
 #btn-right-on {
   position: absolute;
   right: 0%;
@@ -103,7 +95,6 @@
   transition: all 1ms;
   opacity: 100%;
 }
-
 #btn-down-on {
   position: absolute;
   bottom: 0%;
@@ -113,7 +104,6 @@
   transition: all 1ms;
   opacity: 100%;
 }
-
 #btn-up-on {
   position: absolute;
   top: 0%;

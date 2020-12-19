@@ -27,7 +27,7 @@ class App extends Component {
     yellow: '-100%',
     black: '-100%',
     green: '-100%',
-    orange: '-100%',
+    orange: '100%',
     axis: 'null',
     activePg: 'blue',
     up: false,
@@ -92,7 +92,7 @@ class App extends Component {
     ///- green page -\\\
     else if (pg === 'blue' && axis === 'left'){
       // nav to green
-      this.setState({green: '0%'});
+      this.setState({green: '25%'});
       this.setState({axis: 'null'});
       this.setState({activePg: 'green'});
     }
@@ -105,13 +105,13 @@ class App extends Component {
     ///- orange page -\\\
     else if (pg === 'red' && axis === 'right'){
       // nav to orange
-      this.setState({orange: '0%'});
+      this.setState({orange: '25%'});
       this.setState({axis: 'null'});
       this.setState({activePg: 'orange'});
     }
     else if (pg === 'orange' && axis === 'left'){
       // nav back to red
-      this.setState({orange: '-100%'});
+      this.setState({orange: '100%'});
       this.setState({axis: 'null'});
       this.setState({activePg: 'red'});
     }         
@@ -266,7 +266,7 @@ class App extends Component {
           </div>
           <Green page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{left: this.state.green}}/>
           <Red page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.red}}/>
-          <Orange page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{right: this.state.orange}}/>
+          <Orange page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{left: this.state.orange}}/>
           <Yellow page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.yellow}}/>
           <Black page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.black}}/>
         </div>
