@@ -4,7 +4,9 @@
   background-image: url("../../assets/template.png");
   background-repeat: no-repeat;
   background-position: center;
+  /* flex-basis: 100%; */
   background-size: contain;
+  /* z-index: 0; */
 }
 
 .h1 {

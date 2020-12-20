@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Blue.css'
-import Buttons from '../Buttons/Buttons'
+// import Buttons from '../Buttons/Buttons'
 
 class Blue extends Component {
 
@@ -8,7 +8,7 @@ class Blue extends Component {
     return(
       <>
         <div id="blue" className="screen" onWheel={this.props.scroll}>
-        <Buttons click={(e)=>this.props.click(e, 'blue')} hover={this.props.hover}></Buttons>        
+        {/* <Buttons up={this.props.up} down={this.props.down} left={this.props.left} right={this.props.right}></Buttons>         */}
         </div>
       </>
     )

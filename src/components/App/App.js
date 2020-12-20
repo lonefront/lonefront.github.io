@@ -8,8 +8,6 @@ import Black from '../Black/Black'
 import Orange from '../Orange/Orange'
 import Header from '../Header/Header'
 
-
-
 class App extends Component {
 
 
@@ -21,22 +19,23 @@ class App extends Component {
   componentWillUnmount() {
     document.removeEventListener('keydown', this.press);
 }
-  // componentDidUpdate(){
-  // }
 
   state = {
     red: '-100%',
     yellow: '-100%',
     black: '-100%',
     green: '-100%',
-    orange: '-100%',
+    orange: '100%',
     axis: 'null',
-    activePg: 'blue'
+    activePg: 'blue',
+    opacity: '0%',
+    up: false,
+    down: false,
+    left: false,
+    right: false
   }
 
   turn = (pg) => {
-    console.log('ACTIVE PAGE:',pg);
-    console.log('AXXXXXISSSSSS::::', this.state.axis);
     // where pg is pANEL PAgE
     // axis becomes shorthand for axis state
     let axis = this.state.axis
@@ -91,6 +90,7 @@ class App extends Component {
     else if (pg === 'blue' && axis === 'left'){
       // nav to green
       this.setState({green: '0%'});
+      this.setState({opacity: '50%'});
       this.setState({axis: 'null'});
       this.setState({activePg: 'green'});
     }
@@ -109,14 +109,13 @@ class App extends Component {
     }
     else if (pg === 'orange' && axis === 'left'){
       // nav back to red
-      this.setState({orange: '-100%'});
+      this.setState({orange: '100%'});
       this.setState({axis: 'null'});
       this.setState({activePg: 'red'});
     }         
   }
 
   scroll = e => {
-    // this.setState({axis: ''})
     // 'div' targets div element name to 'turn page'
     let div = e.target.id
     switch (div) {
@@ -157,17 +156,13 @@ class App extends Component {
     let v = e.deltaY
     // h is horizontal axis
     let h = e.deltaX
-    console.log('AXIS VELOCITY X:', v, 'AND Y:', h);
+    // console.log('AXIS VELOCITY X:', v, 'AND Y:', h);
     // vertical axis check
     if (v > vel && v < 20){
       this.setState({axis:'bottom'});
-      v = 0;
-      h = 0;
       // console.log('axis is:', this.state.axis);
     } else if (v < nVel && v < 0){
       this.setState({axis:'top'});
-      v = 0;
-      h = 0;
       // console.log('axis is:', this.state.axis);
     }
     // horizontal axis check
@@ -182,9 +177,6 @@ class App extends Component {
     }
   }
 
-  handleClick = (e, str) => {
-    // this.turn(str);
-  }
 
   // hoverSet = (e) => {
   //   let axis = e.target.id;
@@ -204,44 +196,79 @@ class App extends Component {
   press = (e) => {
     // console.log(e.key, 'pressed');
     e = e || window.event;
+    let a = this.state.activePg;
     if (e.keyCode === 38) {
-      this.setState({axis: 'top'})
-      this.turn(this.state.activePg);
+      if (a === 'red' || a === 'yellow' || a === 'black'){
+        this.setState({axis: 'top'})
+        this.turn(this.state.activePg);
+        this.setState({up: true});
+        setTimeout(this.turnOff, 300);
+      } else {
+        // do nothing
+      }
     }
     else if (e.keyCode === 40) {
-      this.setState({axis: 'bottom'});
-      this.turn(this.state.activePg);
-      console.log(this.state.activePg);
+      if (a === 'blue' || a === 'red' || a === 'yellow' || a === 'black'){
+        this.setState({axis: 'bottom'});
+        this.turn(this.state.activePg);
+        this.setState({down: true});
+        setTimeout(this.turnOff, 300);  
+      } else {
+        // fugghetaboutit
+      }
     }
     else if (e.keyCode === 37) {
-      this.setState({axis: 'left'});
-      this.turn(this.state.activePg);
-      console.log(this.state.activePg);
+      if (a === 'blue' || a === 'orange'){
+        this.setState({axis: 'left'});
+        this.turn(this.state.activePg);
+        this.setState({left: true});
+        setTimeout(this.turnOff, 300);  
+      } else {
+        // nada
+      }
     }
     else if (e.keyCode === 39) {
-      this.setState({axis: 'right'});
-      this.turn(this.state.activePg);
-      console.log(this.state.activePg);
+      if (a === 'green' || a === 'red'){
+        this.setState({axis: 'right'});
+        this.turn(this.state.activePg);
+        this.setState({right: true});
+        setTimeout(this.turnOff, 300);  
+      } else {
+        // return nothing
+      }
+    }
+    else {
+      // do nothing
     }
     // this.turn(this.state.activePg);
   }
 
+  turnOff = (e) => {
+    this.setState({up: false});
+    this.setState({down: false});
+    this.setState({left: false});
+    this.setState({right: false});
+  }
   render() {
-    // document.onkeydown = checkKey;
-    //   function checkKey(e) {
-    //     // console.log(this.state.red)
-    //     // console.log(e);
-    //   }
     return (
-      <>
-        <Header></Header>
-        <Blue page={this.state.activePg} scroll={this.scroll} hover={this.hoverSet}/>
-        <Green page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{left: this.state.green}}/>
-        <Red page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.red}}/>
-        <Orange page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{right: this.state.orange}}/>
-        <Yellow page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.yellow}}/>
-        <Black page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.black}}/>
-      </>
+      <div id="container">
+        <Header/>
+        <div className="margin"></div>
+        <div id="container-center" className="screen">
+          <Blue page={this.state.activePg} up={this.state.up} down={this.state.down} left={this.state.left} right={this.state.right} scroll={this.scroll}/>
+          <Green page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{left: this.state.green}}/>
+          <Red page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.red}}/>
+          <Orange page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{left: this.state.orange}}/>
+          <Yellow page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.yellow}}/>
+          <Black page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.black}}/>
+          <div className="button">
+            <div id={this.state.up ? 'btn-up-on' : 'btn-up-off'}></div>
+            <div id={this.state.down ? 'btn-down-on' : 'btn-down-off'}></div>
+            <div id={this.state.left ? 'btn-left-on' : 'btn-left-off'}></div>
+            <div id={this.state.right ? 'btn-right-on' : 'btn-right-off'}></div>
+          </div>
+        </div>
+      </div>
       );  
   }
 }
