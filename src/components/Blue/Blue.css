@@ -1,5 +1,6 @@
 #blue {
-  background: blue;
+  /* background: #0F4C81; */
+  background: #0827f5;
   opacity: 100%;
   /* background-image: url("../../assets/template.png"); */
   background-repeat: no-repeat;
@@ -15,3 +16,6 @@
   background-color: white;
 }
 
+.splash {
+  pointer-events: none;
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Blue.css'
 // import Buttons from '../Buttons/Buttons'
+import donut from '../../assets/splash.mov'
 
 class Blue extends Component {
 
@@ -8,7 +9,9 @@ class Blue extends Component {
     return(
       <>
         <div id="blue" className="screen" onWheel={this.props.scroll}>
-        {/* <Buttons up={this.props.up} down={this.props.down} left={this.props.left} right={this.props.right}></Buttons>         */}
+          <video controls autoPlay muted loop className="splash">  
+            <source src={donut} type="video/mp4"/>
+          </video>
         </div>
       </>
     )

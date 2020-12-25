@@ -13,9 +13,6 @@ class Header extends Component {
       <div className="header">
         <img src={logo} alt="Lonefront" className="logotype"/>
         <img src={sigil} alt="Logo" className="sigil"/>
-        {/* <img src={grid} alt="grid pattern" className="grid"/> */}
-        <img src={line} alt="line" className="line"/>
-        {/* <div className="bar"></div> */}
           <main className="header-tags">
             <div>
               <img src={tab} alt="tab" className="tag"/>
@@ -34,6 +31,9 @@ class Header extends Component {
               [INSERT PHRASE VARIABLE]
             </div>
           </main>
+        {/* <img src={grid} alt="grid pattern" className="grid"/> */}
+        <img src={line} alt="line" className="line"/>
+        {/* <div className="bar"></div> */}
         </div>
     )
   }
