@@ -18,7 +18,7 @@ class App extends Component {
 
   componentWillUnmount() {
     document.removeEventListener('keydown', this.press);
-}
+  }
 
   state = {
     red: '-100%',
@@ -33,7 +33,7 @@ class App extends Component {
     down: false,
     left: false,
     right: false,
-    timeout: 300
+    timeout: 247
   }
 
   turn = (pg) => {
@@ -46,24 +46,32 @@ class App extends Component {
       this.setState({red: '0%'});
       this.setState({axis: 'null'});
       this.setState({activePg: 'red'});
+      this.setState({down: true});
+      setTimeout(this.turnOff, this.state.timeout);  
     }
     else if (pg === 'red' && axis === 'bottom'){
       // nav to yellow, scroll down
       this.setState({yellow: '0%'});
       this.setState({axis: 'null'});
       this.setState({activePg: 'yellow'});
+      this.setState({down: true});
+      setTimeout(this.turnOff, this.state.timeout); 
     }
     else if (pg === 'yellow' && axis === 'bottom'){
       // nav to black
       this.setState({black:'0%'});
       this.setState({axis: 'null'});
       this.setState({activePg: 'black'});
+      this.setState({down: true});
+      setTimeout(this.turnOff, this.state.timeout);
     }
     else if (pg === 'black' && axis === 'bottom'){
       // nav back to blue
       this.setState({red: '-100%', yellow: '-100%', black: '-100%'});
       this.setState({axis: 'null'});
-      this.setState({activePg: 'blue'});  
+      this.setState({activePg: 'blue'}); 
+      this.setState({down: true});
+      setTimeout(this.turnOff, this.state.timeout); 
     } 
     ///- red page -\\\
     else if (pg === 'red' && axis === 'top'){
@@ -71,21 +79,26 @@ class App extends Component {
       this.setState({red:'-100%'});
       this.setState({axis: 'null'});
       this.setState({activePg: 'blue'});
-    } 
-    
+      this.setState({up: true});
+      setTimeout(this.turnOff, this.state.timeout);
+    }
     ///- yellow page -\\\
     else if (pg === 'yellow' && axis === 'top'){
       // nav back to red
       this.setState({yellow: '-100%'});
       this.setState({axis: 'null'});
       this.setState({activePg: 'red'});
+      this.setState({up: true});
+      setTimeout(this.turnOff, this.state.timeout);
     }
     ///- black page -\\\
     else if (pg === 'black' && axis === 'top'){
       // nav back to yellow
       this.setState({black: '-100%'});
       this.setState({axis: 'null'}); 
-      this.setState({activePg: 'yellow'});  
+      this.setState({activePg: 'yellow'});
+      this.setState({up: true});
+      setTimeout(this.turnOff, this.state.timeout);
     }
     ///- green page -\\\
     else if (pg === 'blue' && axis === 'left'){
@@ -94,12 +107,16 @@ class App extends Component {
       this.setState({opacity: '50%'});
       this.setState({axis: 'null'});
       this.setState({activePg: 'green'});
+      this.setState({left: true});
+      setTimeout(this.turnOff, this.state.timeout);  
     }
     else if (pg === 'green' && axis === 'right'){
       // nav back to blue
       this.setState({green: '-100%'});
       this.setState({axis: 'null'});
       this.setState({activePg: 'blue'});
+      this.setState({right: true});
+      setTimeout(this.turnOff, this.state.timeout);
     }
     ///- orange page -\\\
     else if (pg === 'red' && axis === 'right'){
@@ -107,12 +124,16 @@ class App extends Component {
       this.setState({orange: '0%'});
       this.setState({axis: 'null'});
       this.setState({activePg: 'orange'});
+      this.setState({right: true});
+      setTimeout(this.turnOff, this.state.timeout);  
     }
     else if (pg === 'orange' && axis === 'left'){
       // nav back to red
       this.setState({orange: '100%'});
       this.setState({axis: 'null'});
       this.setState({activePg: 'red'});
+      this.setState({left: true});
+      setTimeout(this.turnOff, this.state.timeout);  
     }         
   }
 
@@ -202,10 +223,6 @@ class App extends Component {
       if (a === 'red' || a === 'yellow' || a === 'black'){
         this.setState({axis: 'top'})
         this.turn(this.state.activePg);
-        this.setState({up: true});
-        setTimeout(this.turnOff, this.state.timeout);
-        this.setState({up: true});
-        setTimeout(this.turnOff, this.state.timeout);
       } else {
         // do nothing
       }
@@ -214,8 +231,6 @@ class App extends Component {
       if (a === 'blue' || a === 'red' || a === 'yellow' || a === 'black'){
         this.setState({axis: 'bottom'});
         this.turn(this.state.activePg);
-        this.setState({down: true});
-        setTimeout(this.turnOff, this.state.timeout);  
       } else {
         // fugghetaboutit
       }
@@ -224,27 +239,17 @@ class App extends Component {
       if (a === 'blue' || a === 'orange'){
         this.setState({axis: 'left'});
         this.turn(this.state.activePg);
-        this.setState({left: true});
-        setTimeout(this.turnOff, this.state.timeout);  
       } else {
         // nada
       }
-    }
-    else if (e.keyCode === 39) {
-      if (a === 'green' || a === 'red'){
-        this.setState({axis: 'right'});
-        this.turn(this.state.activePg);
-        this.setState({right: true});
-        setTimeout(this.turnOff, this.state.timeout);  
-      } else {
-        // return nothing
-      }
-    }
-    else {
-      // do nothing
-    }
-    // this.turn(this.state.activePg);
-  }
+    } else if (e.keyCode === 39) {
+        if (a === 'green' || a === 'red'){
+          this.setState({axis: 'right'});
+          this.turn(this.state.activePg);
+          }
+        } else {
+          }
+        }
 
   turnOff = (e) => {
     this.setState({up: false});
@@ -255,7 +260,7 @@ class App extends Component {
   render() {
     return (
       <div id="container">
-        <Header/>
+        <Header state={this.state.activePg}/>
         <div className="margin"></div>
         <div id="container-center" className="screen">
           <Blue page={this.state.activePg} up={this.state.up} down={this.state.down} left={this.state.left} right={this.state.right} scroll={this.scroll}/>
@@ -264,16 +269,10 @@ class App extends Component {
           <Orange page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{left: this.state.orange}}/>
           <Yellow page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.yellow}}/>
           <Black page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.black}}/>
-          {/* <div className="button">
-            <div id={this.state.up ? 'btn-up-on' : 'btn-up-off'} className="btn-ud">&#8593;</div>
-            <div id={this.state.down ? 'btn-down-on' : 'btn-down-off'} className="btn-ud">&#8595;</div>
-            <div id={this.state.left ? 'btn-left-on' : 'btn-left-off'}><div className="btn-lr">&#8592;</div></div>
-            <div id={this.state.right ? 'btn-right-on' : 'btn-right-off'}><div className="btn-lr">&#8594;</div></div>
-          </div> */}
-            <div id="btn-up" className={this.state.up ? 'btn-on' : 'btn-off'}>&#8593;</div>
-            <div id="btn-down" className={this.state.down ? 'btn-on' : 'btn-off'}>&#8595;</div>
-            <div id="btn-left" className={this.state.left ? 'btn-on' : 'btn-off'}>&#8592;</div>
-            <div id="btn-right" className={this.state.right ? 'btn-on' : 'btn-off'}>&#8594;</div>
+          <div id="btn-up" className={this.state.up ? 'btn-on' : 'btn-off'}>&#8593;</div>
+          <div id="btn-down" className={this.state.down ? 'btn-on' : 'btn-off'}>&#8595;</div>
+          <div id="btn-left" className={this.state.left ? 'btn-on' : 'btn-off'}>&#8592;</div>
+          <div id="btn-right" className={this.state.right ? 'btn-on' : 'btn-off'}>&#8594;</div>
         </div>
       </div>
       );  

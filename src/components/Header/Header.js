@@ -8,6 +8,14 @@ import tab from '../../assets/tab.svg'
 
 class Header extends Component {
 
+  state = {
+    slidetype: ''
+  }
+
+  componentDidMount(){
+    this.setState({slidetype:this.props.state})
+  }
+
   render(){
     return(
       <div className="header">
@@ -16,7 +24,7 @@ class Header extends Component {
           <main className="header-tags">
             <div>
               <img src={tab} alt="tab" className="tag"/>
-              SLIDETYPE:[]
+              SLIDETYPE:[{this.state.slidetype}]
             </div>
             <div>
               <img src={tab} alt="tab" className="tag"/>
