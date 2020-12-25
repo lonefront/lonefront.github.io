@@ -32,7 +32,8 @@ class App extends Component {
     up: false,
     down: false,
     left: false,
-    right: false
+    right: false,
+    timeout: 300
   }
 
   turn = (pg) => {
@@ -202,7 +203,9 @@ class App extends Component {
         this.setState({axis: 'top'})
         this.turn(this.state.activePg);
         this.setState({up: true});
-        setTimeout(this.turnOff, 300);
+        setTimeout(this.turnOff, this.state.timeout);
+        this.setState({up: true});
+        setTimeout(this.turnOff, this.state.timeout);
       } else {
         // do nothing
       }
@@ -212,7 +215,7 @@ class App extends Component {
         this.setState({axis: 'bottom'});
         this.turn(this.state.activePg);
         this.setState({down: true});
-        setTimeout(this.turnOff, 300);  
+        setTimeout(this.turnOff, this.state.timeout);  
       } else {
         // fugghetaboutit
       }
@@ -222,7 +225,7 @@ class App extends Component {
         this.setState({axis: 'left'});
         this.turn(this.state.activePg);
         this.setState({left: true});
-        setTimeout(this.turnOff, 300);  
+        setTimeout(this.turnOff, this.state.timeout);  
       } else {
         // nada
       }
@@ -232,7 +235,7 @@ class App extends Component {
         this.setState({axis: 'right'});
         this.turn(this.state.activePg);
         this.setState({right: true});
-        setTimeout(this.turnOff, 300);  
+        setTimeout(this.turnOff, this.state.timeout);  
       } else {
         // return nothing
       }
@@ -261,12 +264,16 @@ class App extends Component {
           <Orange page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{left: this.state.orange}}/>
           <Yellow page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.yellow}}/>
           <Black page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.black}}/>
-          <div className="button">
-            <div id={this.state.up ? 'btn-up-on' : 'btn-up-off'}></div>
-            <div id={this.state.down ? 'btn-down-on' : 'btn-down-off'}></div>
-            <div id={this.state.left ? 'btn-left-on' : 'btn-left-off'}></div>
-            <div id={this.state.right ? 'btn-right-on' : 'btn-right-off'}></div>
-          </div>
+          {/* <div className="button">
+            <div id={this.state.up ? 'btn-up-on' : 'btn-up-off'} className="btn-ud">&#8593;</div>
+            <div id={this.state.down ? 'btn-down-on' : 'btn-down-off'} className="btn-ud">&#8595;</div>
+            <div id={this.state.left ? 'btn-left-on' : 'btn-left-off'}><div className="btn-lr">&#8592;</div></div>
+            <div id={this.state.right ? 'btn-right-on' : 'btn-right-off'}><div className="btn-lr">&#8594;</div></div>
+          </div> */}
+            <div id="btn-up" className={this.state.up ? 'btn-on' : 'btn-off'}>&#8593;</div>
+            <div id="btn-down" className={this.state.down ? 'btn-on' : 'btn-off'}>&#8595;</div>
+            <div id="btn-left" className={this.state.left ? 'btn-on' : 'btn-off'}>&#8592;</div>
+            <div id="btn-right" className={this.state.right ? 'btn-on' : 'btn-off'}>&#8594;</div>
         </div>
       </div>
       );  
