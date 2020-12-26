@@ -6,29 +6,29 @@
   transition: all 500ms;
   overflow: hidden;
 }
-#green {
+#p01 {
   background: green;
   opacity: 50%;
   left: -100%;
 }
-#red {
+#p02 {
   background: red;
   opacity: 50%;
   bottom: -100%;
 }
-#yellow {
+#p03 {
+  background: orange;
+  opacity: 50%;
+}
+#p04 {
   background: #F5DF4D;
   opacity: 50%;
   bottom: -100%;
 }
-#orange {
-  background: orange;
-  opacity: 50%;
-}
-#black {
+#p05 {
   bottom: -100%;
 }
-.green-machine {
+#green-machine {
   opacity: 50%;
 }
 
@@ -36,7 +36,7 @@
   font-family: 'Metastandard', serif;
   color:antiquewhite;
 }
-#anim {
+.anim {
   pointer-events: none;
   width: 100%;
 }

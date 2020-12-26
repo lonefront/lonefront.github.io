@@ -20,13 +20,13 @@ class App extends Component {
     document.removeEventListener('keydown', this.press);
   }
   state = {
-    red: '-100%',
-    yellow: '-100%',
-    black: '-100%',
-    green: '-100%',
-    orange: '100%',
+    p02: '-100%',
+    p04: '-100%',
+    p05: '-100%',
+    p01: '-100%',
+    p03: '100%',
     axis: 'null',
-    activePg: 'blue',
+    activePg: 'p00',
     opacity: '0%',
     up: false,
     down: false,
@@ -38,98 +38,98 @@ class App extends Component {
     // where pg is pANEL PAgE
     // axis becomes shorthand for axis state
     let axis = this.state.axis
-    ///- blue page -\\\
-    if (pg === 'blue' && axis === 'bottom'){
-      // nav to red, scroll down
-      this.setState({red: '0%'});
+    ///- p00 page -\\\
+    if (pg === 'p00' && axis === 'bottom'){
+      // nav to p02, scroll down
+      this.setState({p02: '0%'});
       this.setState({axis: 'null'});
-      this.setState({activePg: 'red'});
+      this.setState({activePg: 'p02'});
       this.setState({down: true});
       setTimeout(this.turnOff, this.state.timeout);  
     }
-    else if (pg === 'red' && axis === 'bottom'){
-      // nav to yellow, scroll down
-      this.setState({yellow: '0%'});
+    else if (pg === 'p02' && axis === 'bottom'){
+      // nav to p04, scroll down
+      this.setState({p04: '0%'});
       this.setState({axis: 'null'});
-      this.setState({activePg: 'yellow'});
+      this.setState({activePg: 'p04'});
       this.setState({down: true});
       setTimeout(this.turnOff, this.state.timeout); 
     }
-    else if (pg === 'yellow' && axis === 'bottom'){
-      // nav to black
-      this.setState({black:'0%'});
+    else if (pg === 'p04' && axis === 'bottom'){
+      // nav to p05
+      this.setState({p05:'0%'});
       this.setState({axis: 'null'});
-      this.setState({activePg: 'black'});
+      this.setState({activePg: 'p05'});
       this.setState({down: true});
       setTimeout(this.turnOff, this.state.timeout);
     }
-    else if (pg === 'black' && axis === 'bottom'){
-      // nav back to blue
-      this.setState({red: '-100%', yellow: '-100%', black: '-100%'});
+    else if (pg === 'p05' && axis === 'bottom'){
+      // nav back to p00
+      this.setState({p02: '-100%', p04: '-100%', p05: '-100%'});
       this.setState({axis: 'null'});
-      this.setState({activePg: 'blue'}); 
+      this.setState({activePg: 'p00'}); 
       this.setState({down: true});
       setTimeout(this.turnOff, this.state.timeout); 
     }
-    ///- red page -\\\
-    else if (pg === 'red' && axis === 'top'){
-      // nav back to blue
-      this.setState({red:'-100%'});
+    ///- p02 page -\\\
+    else if (pg === 'p02' && axis === 'top'){
+      // nav back to p00
+      this.setState({p02:'-100%'});
       this.setState({axis: 'null'});
-      this.setState({activePg: 'blue'});
+      this.setState({activePg: 'p00'});
       this.setState({up: true});
       setTimeout(this.turnOff, this.state.timeout);
     }
-    ///- yellow page -\\\
-    else if (pg === 'yellow' && axis === 'top'){
-      // nav back to red
-      this.setState({yellow: '-100%'});
+    ///- p04 page -\\\
+    else if (pg === 'p04' && axis === 'top'){
+      // nav back to p02
+      this.setState({p04: '-100%'});
       this.setState({axis: 'null'});
-      this.setState({activePg: 'red'});
+      this.setState({activePg: 'p02'});
       this.setState({up: true});
       setTimeout(this.turnOff, this.state.timeout);
     }
-    ///- black page -\\\
-    else if (pg === 'black' && axis === 'top'){
-      // nav back to yellow
-      this.setState({black: '-100%'});
+    ///- p05 page -\\\
+    else if (pg === 'p05' && axis === 'top'){
+      // nav back to p04
+      this.setState({p05: '-100%'});
       this.setState({axis: 'null'}); 
-      this.setState({activePg: 'yellow'});
+      this.setState({activePg: 'p04'});
       this.setState({up: true});
       setTimeout(this.turnOff, this.state.timeout);
     }
-    ///- green page -\\\
-    else if (pg === 'blue' && axis === 'left'){
-      // nav to green
-      this.setState({green: '0%'});
+    ///- p01 page -\\\
+    else if (pg === 'p00' && axis === 'left'){
+      // nav to p01
+      this.setState({p01: '0%'});
       this.setState({opacity: '50%'});
       this.setState({axis: 'null'});
-      this.setState({activePg: 'green'});
+      this.setState({activePg: 'p01'});
       this.setState({left: true});
       setTimeout(this.turnOff, this.state.timeout);  
     }
-    else if (pg === 'green' && axis === 'right'){
-      // nav back to blue
-      this.setState({green: '-100%'});
+    else if (pg === 'p01' && axis === 'right'){
+      // nav back to p00
+      this.setState({p01: '-100%'});
       this.setState({axis: 'null'});
-      this.setState({activePg: 'blue'});
+      this.setState({activePg: 'p00'});
       this.setState({right: true});
       setTimeout(this.turnOff, this.state.timeout);
     }
-    ///- orange page -\\\
-    else if (pg === 'red' && axis === 'right'){
-      // nav to orange
-      this.setState({orange: '0%'});
+    ///- p03 page -\\\
+    else if (pg === 'p02' && axis === 'right'){
+      // nav to p03
+      this.setState({p03: '0%'});
       this.setState({axis: 'null'});
-      this.setState({activePg: 'orange'});
+      this.setState({activePg: 'p03'});
       this.setState({right: true});
       setTimeout(this.turnOff, this.state.timeout);  
     }
-    else if (pg === 'orange' && axis === 'left'){
-      // nav back to red
-      this.setState({orange: '100%'});
+    else if (pg === 'p03' && axis === 'left'){
+      // nav back to p02
+      this.setState({p03: '100%'});
       this.setState({axis: 'null'});
-      this.setState({activePg: 'red'});
+      this.setState({activePg: 'p02'});
       this.setState({left: true});
       setTimeout(this.turnOff, this.state.timeout);  
     }        
@@ -186,22 +186,22 @@ class App extends Component {
     e = e || window.event;
     let a = this.state.activePg;
     if (e.keyCode === 38) {
-      if (a === 'red' || a === 'yellow' || a === 'black'){
+      if (a === 'p02' || a === 'p04' || a === 'p05'){
         this.setState({axis: 'top'})
         this.turn(a);
       }
     } else if (e.keyCode === 40) {
-        if (a === 'blue' || a === 'red' || a === 'yellow' || a === 'black'){
+        if (a === 'p00' || a === 'p02' || a === 'p04' || a === 'p05'){
           this.setState({axis: 'bottom'});
           this.turn(a);
       }
     } else if (e.keyCode === 37) {
-        if (a === 'blue' || a === 'orange'){
+        if (a === 'p00' || a === 'p03'){
           this.setState({axis: 'left'});
           this.turn(a);
       }
     } else if (e.keyCode === 39) {
-        if (a === 'green' || a === 'red'){
+        if (a === 'p01' || a === 'p02'){
           this.setState({axis: 'right'});
           this.turn(a);
       }
@@ -239,27 +239,25 @@ class App extends Component {
                 [INSERT PHRASE VARIABLE]
               </div>
             </main>
-          {/* <img src={grid} alt="grid pattern" className="grid"/> */}
           <img src={line} alt="line" className="line"/>
-          {/* <div className="bar"></div> */}
           </div>
           <div className="margin"></div>
             <div id="container-center" className="screen">
-              <div id="blue" className="screen" onWheel={this.scroll}>
-                <video id="anim" autoPlay muted loop className="blue-donut">  
+              <div id="p00" className="screen" onWheel={this.scroll}>
+                <video className="anim" autoPlay muted loop>  
                   <source src={donut} type="video/mp4"/>
                 </video>
               </div>
-              <div id="green" className="screen" onWheel={this.scroll} style={{left: this.state.green}}>
+              <div id="p01" className="screen" onWheel={this.scroll} style={{left: this.state.p01}}>
               </div>
-              <div id="red" className="screen" onWheel={this.scroll} style={{bottom: this.state.red}}>
+              <div id="p02" className="screen" onWheel={this.scroll} style={{bottom: this.state.p02}}>
               </div>
-              <div id="orange" className="screen" onWheel={this.scroll} style={{left: this.state.orange}}>
+              <div id="p03" className="screen" onWheel={this.scroll} style={{left: this.state.p03}}>
               </div>
-              <div id="yellow" className="screen" onWheel={this.scroll} style={{bottom: this.state.yellow}}>
+              <div id="p04" className="screen" onWheel={this.scroll} style={{bottom: this.state.p04}}>
               </div>
-              <div id="black" className="screen" onWheel={this.scroll} style={{bottom: this.state.black}}>
-                <video id="anim" autoPlay muted loop className="green-machine">  
+              <div id="p05" className="screen" onWheel={this.scroll} style={{bottom: this.state.p05}}>
+                <video id="green-machine" autoPlay muted loop className="anim">  
                   <source src={greenMachine} type="video/mp4"/>
                 </video>
               </div>
