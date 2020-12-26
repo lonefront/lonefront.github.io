@@ -269,7 +269,7 @@ class App extends Component {
           <div id="btn-right" className={this.state.right ? 'btn-on' : 'btn-off'}>&#8594;</div>
         </div>
       </div>
-      );  
+      );
   }
 }
 
