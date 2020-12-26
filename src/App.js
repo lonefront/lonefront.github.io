@@ -7,6 +7,7 @@ import logo from './assets/logotype.svg'
 import line from './assets/line.svg'
 import sigil from './assets/sigil.svg'
 import tab from './assets/tab.svg'
+import disc from './assets/disc.svg'
 
 import donut from './assets/blue-donut.mp4'
 import greenMachine from './assets/donut-24.mp4'
@@ -141,7 +142,7 @@ class App extends Component {
     // let div = e.target.id
     this.axis(e);
     // this.turn(e.target.id);
-  }, 47);
+  }, 38);
 
   axis = e => {
     // vel is animation velocity
@@ -221,51 +222,52 @@ class App extends Component {
         <div className="header">
           <img src={logo} alt="Lonefront" className="logotype"/>
           <img src={sigil} alt="Logo" className="sigil"/>
-            <main className="header-tags">
-              <div>
-                <img src={tab} alt="tab" className="tag"/>
-                SLIDETYPE:[{this.state.activePg}]
-              </div>
-              <div>
-                <img src={tab} alt="tab" className="tag"/>
-                INDEX:[]
-              </div>
-              <div>
-                <img src={tab} alt="tab" className="tag"/>
-                TIMESTAMP:[]
-              </div>
-              <div>
-                <img src={tab} alt="tab" className="tag"/>
-                [INSERT PHRASE VARIABLE]
-              </div>
-            </main>
+          <main className="header-tags">
+            <div>
+              <img src={tab} alt="tab" className="tag"/>
+              SLIDETYPE:[{this.state.activePg}]
+            </div>
+            <div>
+              <img src={tab} alt="tab" className="tag"/>
+              INDEX:[]
+            </div>
+            <div>
+              <img src={tab} alt="tab" className="tag"/>
+              TIMESTAMP:[]
+            </div>
+            <div>
+              <img src={tab} alt="tab" className="tag"/>
+              [INSERT PHRASE VARIABLE]
+            </div>
+          </main>
           <img src={line} alt="line" className="line"/>
+          <img src={disc} alt="center" className="disc"/>
+        </div>
+        <div className="margin"></div>
+        <div id="container-center" className="screen">
+          <div id="p00" className="screen" onWheel={this.scroll}>
+            <video className="anim" autoPlay muted loop>  
+              <source src={donut} type="video/mp4"/>
+            </video>
           </div>
-          <div className="margin"></div>
-            <div id="container-center" className="screen">
-              <div id="p00" className="screen" onWheel={this.scroll}>
-                <video className="anim" autoPlay muted loop>  
-                  <source src={donut} type="video/mp4"/>
-                </video>
-              </div>
-              <div id="p01" className="screen" onWheel={this.scroll} style={{left: this.state.p01}}>
-              </div>
-              <div id="p02" className="screen" onWheel={this.scroll} style={{bottom: this.state.p02}}>
-              </div>
-              <div id="p03" className="screen" onWheel={this.scroll} style={{left: this.state.p03}}>
-              </div>
-              <div id="p04" className="screen" onWheel={this.scroll} style={{bottom: this.state.p04}}>
-              </div>
-              <div id="p05" className="screen" onWheel={this.scroll} style={{bottom: this.state.p05}}>
-                <video id="green-machine" autoPlay muted loop className="anim">  
-                  <source src={greenMachine} type="video/mp4"/>
-                </video>
-              </div>
-              <div id="btn-up" className={this.state.up ? 'btn-on' : 'btn-off'}>&#8593;</div>
-              <div id="btn-down" className={this.state.down ? 'btn-on' : 'btn-off'}>&#8595;</div>
-              <div id="btn-left" className={this.state.left ? 'btn-on' : 'btn-off'}>&#8592;</div>
-              <div id="btn-right" className={this.state.right ? 'btn-on' : 'btn-off'}>&#8594;</div>
+          <div id="p01" className="screen" onWheel={this.scroll} style={{left: this.state.p01}}>
           </div>
+          <div id="p02" className="screen" onWheel={this.scroll} style={{bottom: this.state.p02}}>
+          </div>
+          <div id="p03" className="screen" onWheel={this.scroll} style={{left: this.state.p03}}>
+          </div>
+          <div id="p04" className="screen" onWheel={this.scroll} style={{bottom: this.state.p04}}>
+          </div>
+          <div id="p05" className="screen" onWheel={this.scroll} style={{bottom: this.state.p05}}>
+            <video id="green-machine" autoPlay muted loop className="anim">  
+              <source src={greenMachine} type="video/mp4"/>
+            </video>
+          </div>
+          <div id="btn-up" className={this.state.up ? 'btn-on' : 'btn-off'}>&#8593;</div>
+          <div id="btn-down" className={this.state.down ? 'btn-on' : 'btn-off'}>&#8595;</div>
+          <div id="btn-left" className={this.state.left ? 'btn-on' : 'btn-off'}>&#8592;</div>
+          <div id="btn-right" className={this.state.right ? 'btn-on' : 'btn-off'}>&#8594;</div>
+        </div>
       </div>
       );  
   }
