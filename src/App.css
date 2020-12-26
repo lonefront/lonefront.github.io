@@ -6,6 +6,32 @@
   transition: all 500ms;
   overflow: hidden;
 }
+#green {
+  background: green;
+  opacity: 50%;
+  left: -100%;
+}
+#red {
+  background: red;
+  opacity: 50%;
+  bottom: -100%;
+}
+#yellow {
+  background: #F5DF4D;
+  opacity: 50%;
+  bottom: -100%;
+}
+#orange {
+  background: orange;
+  opacity: 50%;
+}
+#black {
+  bottom: -100%;
+}
+.green-machine {
+  opacity: 50%;
+}
+
 * {
   font-family: 'Metastandard', serif;
   color:antiquewhite;

@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
-import './App.css';
-import Blue from '../Blue/Blue'
-import Red from '../Red/Red'
-import Yellow from '../Yellow/Yellow'
-import Green from '../Green/Green'
-import Black from '../Black/Black'
-import Orange from '../Orange/Orange'
-import Header from '../Header/Header'
 import debounce from 'lodash/debounce'
+import './App.css';
+import './Header.css'
+
+import logo from './assets/logotype.svg'
+import line from './assets/line.svg'
+import sigil from './assets/sigil.svg'
+import tab from './assets/tab.svg'
+
+import donut from './assets/blue-donut.mp4'
+import greenMachine from './assets/donut-24.mp4'
 
 class App extends Component {
 
@@ -216,20 +218,56 @@ class App extends Component {
   render() {
     return (
       <div id="container">
-        <Header state={this.state.activePg}/>
-        <div className="margin"></div>
-        <div id="container-center" className="screen">
-          <Blue page={this.state.activePg} up={this.state.up} down={this.state.down} left={this.state.left} right={this.state.right} scroll={this.scroll}/>
-          <Green page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{left: this.state.green}}/>
-          <Red page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.red}}/>
-          <Orange page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{left: this.state.orange}}/>
-          <Yellow page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.yellow}}/>
-          <Black page={this.state.activePg} scroll={this.scroll} click={this.handleClick} hover={this.hoverSet} style={{bottom: this.state.black}}/>
-          <div id="btn-up" className={this.state.up ? 'btn-on' : 'btn-off'}>&#8593;</div>
-          <div id="btn-down" className={this.state.down ? 'btn-on' : 'btn-off'}>&#8595;</div>
-          <div id="btn-left" className={this.state.left ? 'btn-on' : 'btn-off'}>&#8592;</div>
-          <div id="btn-right" className={this.state.right ? 'btn-on' : 'btn-off'}>&#8594;</div>
-        </div>
+        <div className="header">
+          <img src={logo} alt="Lonefront" className="logotype"/>
+          <img src={sigil} alt="Logo" className="sigil"/>
+            <main className="header-tags">
+              <div>
+                <img src={tab} alt="tab" className="tag"/>
+                SLIDETYPE:[{this.state.activePg}]
+              </div>
+              <div>
+                <img src={tab} alt="tab" className="tag"/>
+                INDEX:[]
+              </div>
+              <div>
+                <img src={tab} alt="tab" className="tag"/>
+                TIMESTAMP:[]
+              </div>
+              <div>
+                <img src={tab} alt="tab" className="tag"/>
+                [INSERT PHRASE VARIABLE]
+              </div>
+            </main>
+          {/* <img src={grid} alt="grid pattern" className="grid"/> */}
+          <img src={line} alt="line" className="line"/>
+          {/* <div className="bar"></div> */}
+          </div>
+          <div className="margin"></div>
+            <div id="container-center" className="screen">
+              <div id="blue" className="screen" onWheel={this.scroll}>
+                <video id="anim" autoPlay muted loop className="blue-donut">  
+                  <source src={donut} type="video/mp4"/>
+                </video>
+              </div>
+              <div id="green" className="screen" onWheel={this.scroll} style={{left: this.state.green}}>
+              </div>
+              <div id="red" className="screen" onWheel={this.scroll} style={{bottom: this.state.red}}>
+              </div>
+              <div id="orange" className="screen" onWheel={this.scroll} style={{left: this.state.orange}}>
+              </div>
+              <div id="yellow" className="screen" onWheel={this.scroll} style={{bottom: this.state.yellow}}>
+              </div>
+              <div id="black" className="screen" onWheel={this.scroll} style={{bottom: this.state.black}}>
+                <video id="anim" autoPlay muted loop className="green-machine">  
+                  <source src={greenMachine} type="video/mp4"/>
+                </video>
+              </div>
+              <div id="btn-up" className={this.state.up ? 'btn-on' : 'btn-off'}>&#8593;</div>
+              <div id="btn-down" className={this.state.down ? 'btn-on' : 'btn-off'}>&#8595;</div>
+              <div id="btn-left" className={this.state.left ? 'btn-on' : 'btn-off'}>&#8592;</div>
+              <div id="btn-right" className={this.state.right ? 'btn-on' : 'btn-off'}>&#8594;</div>
+          </div>
       </div>
       );  
   }
