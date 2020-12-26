@@ -7,20 +7,16 @@ import Green from '../Green/Green'
 import Black from '../Black/Black'
 import Orange from '../Orange/Orange'
 import Header from '../Header/Header'
-import { debounce } from 'lodash'
+import debounce from 'lodash/debounce'
 
 class App extends Component {
 
-
   componentDidMount(){
     document.addEventListener('keydown', this.press);
-    // this.checkKey();
   }
-
   componentWillUnmount() {
     document.removeEventListener('keydown', this.press);
   }
-
   state = {
     red: '-100%',
     yellow: '-100%',
@@ -36,7 +32,6 @@ class App extends Component {
     right: false,
     timeout: 247
   }
-
   turn = pg => {
     // where pg is pANEL PAgE
     // axis becomes shorthand for axis state
@@ -139,8 +134,8 @@ class App extends Component {
   }
 
   scroll = debounce(e => {
-  console.log('scrolling', e.target.id);
-  // 'div' targets div element name to 'turn page'
+    console.log('scrolling', e.target.id);
+    // 'div' targets div element name to 'turn page'
     // let div = e.target.id
     this.axis(e);
     // this.turn(e.target.id);
