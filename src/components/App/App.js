@@ -7,6 +7,7 @@ import Green from '../Green/Green'
 import Black from '../Black/Black'
 import Orange from '../Orange/Orange'
 import Header from '../Header/Header'
+import { debounce } from 'lodash'
 
 class App extends Component {
 
@@ -72,7 +73,7 @@ class App extends Component {
       this.setState({activePg: 'blue'}); 
       this.setState({down: true});
       setTimeout(this.turnOff, this.state.timeout); 
-    } 
+    }
     ///- red page -\\\
     else if (pg === 'red' && axis === 'top'){
       // nav back to blue
@@ -134,49 +135,21 @@ class App extends Component {
       this.setState({activePg: 'red'});
       this.setState({left: true});
       setTimeout(this.turnOff, this.state.timeout);  
-    }         
-  }
-  
-  scroll = e => {
-    // console.log('scrolling', e, 'COUNT:', count);
-    // 'div' targets div element name to 'turn page'
-    let div = e.target.id
-    switch (div) {
-      case 'blue':
-        this.axis(e);
-        this.turn(div);
-        // return;
-        break;
-      case 'red':
-        this.axis(e);
-        this.turn(div);
-        break;
-      case 'green':
-        this.axis(e);
-        this.turn(div);
-        break; 
-      case 'orange':
-        this.axis(e);
-        this.turn(div);
-        break;   
-      case 'yellow':
-        this.axis(e);
-        this.turn(div);
-        break;
-      case 'black':
-        this.axis(e);
-        this.turn(div);
-        break;
-      default:
-        // do nothing
-    }
+    }        
   }
 
+  scroll = debounce(e => {
+  console.log('scrolling', e.target.id);
+  // 'div' targets div element name to 'turn page'
+    // let div = e.target.id
+    this.axis(e);
+    // this.turn(e.target.id);
+  }, 47);
+
   axis = e => {
-    console.log('hit axis func:', e);
     // vel is animation velocity
-    const vel = 5;
-    const nVel = -5;
+    // const vel = 5;
+    // const nVel = -5;
     // v is vertical axis
     let v = e.deltaY
     // h is horizontal axis
@@ -185,55 +158,31 @@ class App extends Component {
     // vertical axis check
     // if (v > vel && v < 20){
     //   this.setState({axis:'bottom'});
-    //   // console.log('axis is:', this.state.axis);
     // } else if (v < nVel && v < 0){
     //   this.setState({axis:'top'});
-    //   // console.log('axis is:', this.state.axis);
     // }
     // // horizontal axis check
     // if (h > vel){
     //   this.setState({axis:'right'});
-    //   // console.log('axis is:', this.state.axis);
     // } else if (h < nVel && h < 0){
     //   this.setState({axis:'left'})
-    //   // console.log('axis is:', this.state.axis);
-    // } else {
-    //   return 0;
     // }
-    if (v > vel && v < 20){
+    if (v === 1 && h === 0){
       this.setState({axis:'bottom'});
-      // console.log('axis is:', this.state.axis);
-    } else if (v < nVel && v < 0){
+      this.turn(e.target.id);
+    } else if (v === -1 && h === 0){
       this.setState({axis:'top'});
-      // console.log('axis is:', this.state.axis);
+      this.turn(e.target.id);
     }
     // horizontal axis check
-    if (h > vel){
+    if (h === 1 && v === 0){
       this.setState({axis:'right'});
-      // console.log('axis is:', this.state.axis);
-    } else if (h < nVel && h < 0){
+      this.turn(e.target.id);
+    } else if (h === -1 && v === 0){
       this.setState({axis:'left'})
-      // console.log('axis is:', this.state.axis);
-    } else {
-      return 0;
+      this.turn(e.target.id);
     }
   }
-
-
-  // hoverSet = (e) => {
-  //   let axis = e.target.id;
-  //   if (axis === 'btn-down'){
-  //     this.setState({axis: 'bottom'});
-  //   } else if (axis === 'btn-up'){
-  //     this.setState({axis: 'top'});
-  //   } else if (axis === 'btn-left'){
-  //     this.setState({axis: 'left'});
-  //   } else if (axis === 'btn-right'){
-  //     this.setState({axis: 'right'});
-  //   } else {
-  //     return 0;
-  //   }
-  // }
   
   press = (e) => {
     // console.log(e.key, 'pressed');
@@ -242,34 +191,25 @@ class App extends Component {
     if (e.keyCode === 38) {
       if (a === 'red' || a === 'yellow' || a === 'black'){
         this.setState({axis: 'top'})
-        this.turn(this.state.activePg);
-      } else {
-        // do nothing
+        this.turn(a);
       }
-    }
-    else if (e.keyCode === 40) {
-      if (a === 'blue' || a === 'red' || a === 'yellow' || a === 'black'){
-        this.setState({axis: 'bottom'});
-        this.turn(this.state.activePg);
-      } else {
-        // fugghetaboutit
+    } else if (e.keyCode === 40) {
+        if (a === 'blue' || a === 'red' || a === 'yellow' || a === 'black'){
+          this.setState({axis: 'bottom'});
+          this.turn(a);
       }
-    }
-    else if (e.keyCode === 37) {
-      if (a === 'blue' || a === 'orange'){
-        this.setState({axis: 'left'});
-        this.turn(this.state.activePg);
-      } else {
-        // nada
+    } else if (e.keyCode === 37) {
+        if (a === 'blue' || a === 'orange'){
+          this.setState({axis: 'left'});
+          this.turn(a);
       }
     } else if (e.keyCode === 39) {
         if (a === 'green' || a === 'red'){
           this.setState({axis: 'right'});
-          this.turn(this.state.activePg);
-          }
-        } else {
-          }
-        }
+          this.turn(a);
+      }
+    }
+  }
 
   turnOff = (e) => {
     this.setState({up: false});
@@ -277,6 +217,7 @@ class App extends Component {
     this.setState({left: false});
     this.setState({right: false});
   }
+
   render() {
     return (
       <div id="container">
