@@ -24,7 +24,7 @@ class Header extends Component {
           <main className="header-tags">
             <div>
               <img src={tab} alt="tab" className="tag"/>
-              SLIDETYPE:[{this.state.slidetype}]
+              SLIDETYPE:[{this.props.state}]
             </div>
             <div>
               <img src={tab} alt="tab" className="tag"/>

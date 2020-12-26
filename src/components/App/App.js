@@ -36,7 +36,7 @@ class App extends Component {
     timeout: 247
   }
 
-  turn = (pg) => {
+  turn = pg => {
     // where pg is pANEL PAgE
     // axis becomes shorthand for axis state
     let axis = this.state.axis
@@ -136,14 +136,16 @@ class App extends Component {
       setTimeout(this.turnOff, this.state.timeout);  
     }         
   }
-
+  
   scroll = e => {
+    // console.log('scrolling', e, 'COUNT:', count);
     // 'div' targets div element name to 'turn page'
     let div = e.target.id
     switch (div) {
       case 'blue':
         this.axis(e);
         this.turn(div);
+        // return;
         break;
       case 'red':
         this.axis(e);
@@ -171,15 +173,33 @@ class App extends Component {
   }
 
   axis = e => {
+    console.log('hit axis func:', e);
     // vel is animation velocity
-    const vel = 15;
-    const nVel = -15;
+    const vel = 5;
+    const nVel = -5;
     // v is vertical axis
     let v = e.deltaY
     // h is horizontal axis
     let h = e.deltaX
     // console.log('AXIS VELOCITY X:', v, 'AND Y:', h);
     // vertical axis check
+    // if (v > vel && v < 20){
+    //   this.setState({axis:'bottom'});
+    //   // console.log('axis is:', this.state.axis);
+    // } else if (v < nVel && v < 0){
+    //   this.setState({axis:'top'});
+    //   // console.log('axis is:', this.state.axis);
+    // }
+    // // horizontal axis check
+    // if (h > vel){
+    //   this.setState({axis:'right'});
+    //   // console.log('axis is:', this.state.axis);
+    // } else if (h < nVel && h < 0){
+    //   this.setState({axis:'left'})
+    //   // console.log('axis is:', this.state.axis);
+    // } else {
+    //   return 0;
+    // }
     if (v > vel && v < 20){
       this.setState({axis:'bottom'});
       // console.log('axis is:', this.state.axis);
