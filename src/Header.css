@@ -9,7 +9,6 @@
   25% {filter: invert(1)}
   50% {filter: invert(0)}
   75% {filter: invert(1)}
-  /* 100% {filter: invert(0)} */
 }
 .logotype:hover {
   filter: invert(1);
@@ -19,7 +18,6 @@
   overflow: clip;
   animation-name: fade;
   animation-duration: 247ms;
-  /* opacity: 50%; */
 }
 .header {
   width: 95vh;
@@ -46,6 +44,16 @@
 .line {
   position: absolute;
   left: 0;
+}
+.disc {
+  position: absolute;
+  right: 45%;
+  width: 10%;
+  top: 425.5%;
+  opacity: 33%;
+}
+.disc svg {
+  fill: red;
 }
 
 .header-tags {
