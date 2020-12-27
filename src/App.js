@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useEffect, useState} from 'react';
 import debounce from 'lodash/debounce'
 import './App.css';
 import './Header.css'
@@ -12,211 +12,169 @@ import disc from './assets/disc.svg'
 import donut from './assets/blue-donut.mp4'
 import greenMachine from './assets/donut-24.mp4'
 
-class App extends Component {
+function App() {
 
-  componentDidMount(){
-    document.addEventListener('keydown', this.press);
-  }
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.press);
-  }
-  state = {
-    p02: '-100%',
-    p04: '-100%',
-    p05: '-100%',
-    p01: '-100%',
-    p03: '100%',
-    axis: 'null',
-    activePg: 'p00',
-    opacity: '0%',
-    up: false,
-    down: false,
-    left: false,
-    right: false,
-    timeout: 247
-  }
-  turn = pg => {
-    // where pg is pANEL PAgE
-    // axis becomes shorthand for axis state
-    let axis = this.state.axis
+  useEffect(() => {
+    
+    document.addEventListener('keydown', press);
+
+    return () => {
+      document.removeEventListener('keydown', press);
+    }
+  })
+
+
+  const [p01, setP01] = useState('-100%');
+  const [p02, setP02] = useState('-100%');
+  const [p03, setP03] = useState('-100%');
+  const [p04, setP04] = useState('-100%');
+  const [p05, setP05] = useState('-100%');
+  const [activePg, setActivepg] = useState('p00');
+  const [up, setUp] = useState(false);
+  const [down, setDown] = useState(false);
+  const [left, setLeft] = useState(false);
+  const [right, setRight] = useState(false);
+
+  const turn = (pg, dir) => {
     ///- p00 page -\\\
-    if (pg === 'p00' && axis === 'bottom'){
+    if (pg === 'p00' && dir === 'bottom'){
       // nav to p02, scroll down
-      this.setState({p02: '0%'});
-      this.setState({axis: 'null'});
-      this.setState({activePg: 'p02'});
-      this.setState({down: true});
-      setTimeout(this.turnOff, this.state.timeout);  
+      setP02('0%');
+      setActivepg('p02');
+      setDown(true);
+      setTimeout(turnOff, 200);  
     }
-    else if (pg === 'p02' && axis === 'bottom'){
+    else if (pg === 'p02' && dir === 'bottom'){
       // nav to p04, scroll down
-      this.setState({p04: '0%'});
-      this.setState({axis: 'null'});
-      this.setState({activePg: 'p04'});
-      this.setState({down: true});
-      setTimeout(this.turnOff, this.state.timeout); 
+      setP04('0%');
+      setActivepg('p04');
+      setDown(true);
+      setTimeout(turnOff, 200); 
     }
-    else if (pg === 'p04' && axis === 'bottom'){
+    else if (pg === 'p04' && dir === 'bottom'){
       // nav to p05
-      this.setState({p05:'0%'});
-      this.setState({axis: 'null'});
-      this.setState({activePg: 'p05'});
-      this.setState({down: true});
-      setTimeout(this.turnOff, this.state.timeout);
+      setP05('0%');
+      setActivepg('p05');
+      setDown(true);
+      setTimeout(turnOff, 200);
     }
-    else if (pg === 'p05' && axis === 'bottom'){
+    else if (pg === 'p05' && dir === 'bottom'){
       // nav back to p00
-      this.setState({p02: '-100%', p04: '-100%', p05: '-100%'});
-      this.setState({axis: 'null'});
-      this.setState({activePg: 'p00'}); 
-      this.setState({down: true});
-      setTimeout(this.turnOff, this.state.timeout); 
+      setP02('-100%');
+      setP04('-100%');
+      setP05('-100%');
+      setActivepg('p00');
+      setDown(true);
+      setTimeout(turnOff, 200); 
     }
     ///- p02 page -\\\
-    else if (pg === 'p02' && axis === 'top'){
+    else if (pg === 'p02' && dir === 'top'){
       // nav back to p00
-      this.setState({p02:'-100%'});
-      this.setState({axis: 'null'});
-      this.setState({activePg: 'p00'});
-      this.setState({up: true});
-      setTimeout(this.turnOff, this.state.timeout);
+      setP02('-100%');
+      setActivepg('p00');
+      setUp(true);
+      setTimeout(turnOff, 200); 
     }
     ///- p04 page -\\\
-    else if (pg === 'p04' && axis === 'top'){
+    else if (pg === 'p04' && dir === 'top'){
       // nav back to p02
-      this.setState({p04: '-100%'});
-      this.setState({axis: 'null'});
-      this.setState({activePg: 'p02'});
-      this.setState({up: true});
-      setTimeout(this.turnOff, this.state.timeout);
+      setP04('-100%');
+      setActivepg('p02');
+      setUp(true);
+      setTimeout(turnOff, 200); 
     }
     ///- p05 page -\\\
-    else if (pg === 'p05' && axis === 'top'){
+    else if (pg === 'p05' && dir === 'top'){
       // nav back to p04
-      this.setState({p05: '-100%'});
-      this.setState({axis: 'null'}); 
-      this.setState({activePg: 'p04'});
-      this.setState({up: true});
-      setTimeout(this.turnOff, this.state.timeout);
+      setP05('-100%');
+      setActivepg('p04');
+      setUp(true);
+      setTimeout(turnOff, 200); 
     }
     ///- p01 page -\\\
-    else if (pg === 'p00' && axis === 'left'){
+    else if (pg === 'p00' && dir === 'left'){
       // nav to p01
-      this.setState({p01: '0%'});
-      this.setState({opacity: '50%'});
-      this.setState({axis: 'null'});
-      this.setState({activePg: 'p01'});
-      this.setState({left: true});
-      setTimeout(this.turnOff, this.state.timeout);  
+      setP01('0%');
+      setActivepg('p01');
+      setLeft(true);
+      setTimeout(turnOff, 200); 
     }
-    else if (pg === 'p01' && axis === 'right'){
+    else if (pg === 'p01' && dir === 'right'){
       // nav back to p00
-      this.setState({p01: '-100%'});
-      this.setState({axis: 'null'});
-      this.setState({activePg: 'p00'});
-      this.setState({right: true});
-      setTimeout(this.turnOff, this.state.timeout);
+      setP01('-100%');
+      setActivepg('p00');
+      setRight(true);
+      setTimeout(turnOff, 200); 
     }
     ///- p03 page -\\\
-    else if (pg === 'p02' && axis === 'right'){
+    else if (pg === 'p02' && dir === 'right'){
       // nav to p03
-      this.setState({p03: '0%'});
-      this.setState({axis: 'null'});
-      this.setState({activePg: 'p03'});
-      this.setState({right: true});
-      setTimeout(this.turnOff, this.state.timeout);  
+      setP03('-0%');
+      setActivepg('p03');
+      setRight(true);
+      setTimeout(turnOff, 200); 
     }
-    else if (pg === 'p03' && axis === 'left'){
+    else if (pg === 'p03' && dir === 'left'){
       // nav back to p02
-      this.setState({p03: '100%'});
-      this.setState({axis: 'null'});
-      this.setState({activePg: 'p02'});
-      this.setState({left: true});
-      setTimeout(this.turnOff, this.state.timeout);  
+      setP03('-100%');
+      setActivepg('p02');
+      setLeft(true);
+      setTimeout(turnOff, 200);
     }        
   }
 
-  scroll = debounce(e => {
+  const scroll = debounce(e => {
     console.log('scrolling', e.target.id);
-    // 'div' targets div element name to 'turn page'
-    // let div = e.target.id
-    this.axis(e);
-    // this.turn(e.target.id);
-  }, 38);
+    velocity(e);
+  }, 100, {
+    leading: true,
+    trailing: false
+  });
+  
 
-  axis = e => {
-    // vel is animation velocity
-    // const vel = 5;
-    // const nVel = -5;
-    // v is vertical axis
-    let v = e.deltaY
-    // h is horizontal axis
-    let h = e.deltaX
-    // console.log('AXIS VELOCITY X:', v, 'AND Y:', h);
-    // vertical axis check
-    // if (v > vel && v < 20){
-    //   this.setState({axis:'bottom'});
-    // } else if (v < nVel && v < 0){
-    //   this.setState({axis:'top'});
-    // }
-    // // horizontal axis check
-    // if (h > vel){
-    //   this.setState({axis:'right'});
-    // } else if (h < nVel && h < 0){
-    //   this.setState({axis:'left'})
-    // }
-    if (v === 1 && h === 0){
-      this.setState({axis:'bottom'});
-      this.turn(e.target.id);
-    } else if (v === -1 && h === 0){
-      this.setState({axis:'top'});
-      this.turn(e.target.id);
+  const velocity = e => {
+    if (e.deltaY === 1 && e.deltaX === 0){
+      turn(e.target.id, 'bottom');
+    } else if (e.deltaY === -1 && e.deltaX === 0){
+      turn(e.target.id, 'top');
     }
-    // horizontal axis check
-    if (h === 1 && v === 0){
-      this.setState({axis:'right'});
-      this.turn(e.target.id);
-    } else if (h === -1 && v === 0){
-      this.setState({axis:'left'})
-      this.turn(e.target.id);
+    if (e.deltaX === 1 && e.deltaY === 0){
+      turn(e.target.id, 'right');
+    } else if (e.deltaX === -1 && e.deltaY === 0){
+      turn(e.target.id, 'left');
     }
   }
   
-  press = (e) => {
-    // console.log(e.key, 'pressed');
+  const press = (e) => {
+    console.log(e.keyCode, 'pressed');
     e = e || window.event;
-    let a = this.state.activePg;
     if (e.keyCode === 38) {
-      if (a === 'p02' || a === 'p04' || a === 'p05'){
-        this.setState({axis: 'top'})
-        this.turn(a);
+      if (activePg === 'p02' || activePg === 'p04' || activePg === 'p05'){
+        turn(activePg, 'top');
       }
     } else if (e.keyCode === 40) {
-        if (a === 'p00' || a === 'p02' || a === 'p04' || a === 'p05'){
-          this.setState({axis: 'bottom'});
-          this.turn(a);
+        if (activePg === 'p00' || activePg === 'p02' || activePg === 'p04' || activePg === 'p05'){
+          turn(activePg, 'bottom');
       }
     } else if (e.keyCode === 37) {
-        if (a === 'p00' || a === 'p03'){
-          this.setState({axis: 'left'});
-          this.turn(a);
+        if (activePg === 'p00' || activePg === 'p03'){
+          turn(activePg, 'left');
       }
     } else if (e.keyCode === 39) {
-        if (a === 'p01' || a === 'p02'){
-          this.setState({axis: 'right'});
-          this.turn(a);
+        if (activePg === 'p01' || activePg === 'p02'){
+          turn(activePg, 'right');
       }
     }
   }
 
-  turnOff = (e) => {
-    this.setState({up: false});
-    this.setState({down: false});
-    this.setState({left: false});
-    this.setState({right: false});
+  const turnOff = (e) => {
+    setUp(false);
+    setDown(false);
+    setLeft(false);
+    setRight(false);
   }
 
-  render() {
+  
     return (
       <div id="container">
         <div className="header">
@@ -225,7 +183,7 @@ class App extends Component {
           <main className="header-tags">
             <div>
               <img src={tab} alt="tab" className="tag"/>
-              SLIDETYPE:[{this.state.activePg}]
+              SLIDETYPE:[{activePg}]
             </div>
             <div>
               <img src={tab} alt="tab" className="tag"/>
@@ -245,32 +203,31 @@ class App extends Component {
         </div>
         <div className="margin"></div>
         <div id="container-center" className="screen">
-          <div id="p00" className="screen" onWheel={this.scroll}>
+          <div id="p00" className="screen" onWheel={scroll}>
             <video className="anim" autoPlay muted loop>  
               <source src={donut} type="video/mp4"/>
             </video>
           </div>
-          <div id="p01" className="screen" onWheel={this.scroll} style={{left: this.state.p01}}>
+          <div id="p01" className="screen" onWheel={scroll} style={{left: p01}}>
           </div>
-          <div id="p02" className="screen" onWheel={this.scroll} style={{bottom: this.state.p02}}>
+          <div id="p02" className="screen" onWheel={scroll} style={{bottom: p02}}>
           </div>
-          <div id="p03" className="screen" onWheel={this.scroll} style={{left: this.state.p03}}>
+          <div id="p03" className="screen" onWheel={scroll} style={{right: p03}}>
           </div>
-          <div id="p04" className="screen" onWheel={this.scroll} style={{bottom: this.state.p04}}>
+          <div id="p04" className="screen" onWheel={scroll} style={{bottom: p04}}>
           </div>
-          <div id="p05" className="screen" onWheel={this.scroll} style={{bottom: this.state.p05}}>
+          <div id="p05" className="screen" onWheel={scroll} style={{bottom: p05}}>
             <video id="green-machine" autoPlay muted loop className="anim">  
               <source src={greenMachine} type="video/mp4"/>
             </video>
           </div>
-          <div id="btn-up" className={this.state.up ? 'btn-on' : 'btn-off'}>&#8593;</div>
-          <div id="btn-down" className={this.state.down ? 'btn-on' : 'btn-off'}>&#8595;</div>
-          <div id="btn-left" className={this.state.left ? 'btn-on' : 'btn-off'}>&#8592;</div>
-          <div id="btn-right" className={this.state.right ? 'btn-on' : 'btn-off'}>&#8594;</div>
+          <div id="btn-up" className={up ? 'btn-on' : 'btn-off'}>&#8593;</div>
+          <div id="btn-down" className={down ? 'btn-on' : 'btn-off'}>&#8595;</div>
+          <div id="btn-left" className={left ? 'btn-on' : 'btn-off'}>&#8592;</div>
+          <div id="btn-right" className={right ? 'btn-on' : 'btn-off'}>&#8594;</div>
         </div>
       </div>
       );
   }
-}
 
 export default App;

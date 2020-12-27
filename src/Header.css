@@ -64,11 +64,11 @@
 main div {
   /* margin-right: 18vh; */
   margin-top: 2%;
-  font-size: 1vh;
+  font-size: 2vh;
   /* white-space: nowrap; */
 }
 .tag {
-  height: 5%;
+  height: 7%;
   position: absolute;
-  top: 83%;
+  top: 95%;
 }
