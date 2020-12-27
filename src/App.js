@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import debounce from 'lodash/debounce'
 import './App.css';
 import './Header.css'
@@ -15,7 +15,6 @@ import greenMachine from './assets/donut-24.mp4'
 function App() {
 
   useEffect(() => {
-    
     document.addEventListener('keydown', press);
 
     return () => {
@@ -123,29 +122,37 @@ function App() {
     }        
   }
 
-  const scroll = debounce(e => {
+  const scroll = useRef(debounce(e => {
     console.log('scrolling', e.target.id);
     velocity(e);
-  }, 100, {
+  }, 47, {
     leading: true,
     trailing: false
-  });
+  })).current;
   
 
   const velocity = e => {
-    if (e.deltaY === 1 && e.deltaX === 0){
+    console.log('in velocity', 'y:', e.deltaY, 'x:', e.deltaX);
+    if (e.deltaY >= 1 && e.deltaX >= -1){
+      console.log('bottom true');
       turn(e.target.id, 'bottom');
-    } else if (e.deltaY === -1 && e.deltaX === 0){
+    } else if (e.deltaY <= -1 && e.deltaX <= 1){
+      console.log('top true');
+
       turn(e.target.id, 'top');
     }
-    if (e.deltaX === 1 && e.deltaY === 0){
+    if (e.deltaX >= 1 && e.deltaY >= -1){
+      console.log('right true');
+
       turn(e.target.id, 'right');
-    } else if (e.deltaX === -1 && e.deltaY === 0){
+    } else if (e.deltaX <= -1 && e.deltaY <= 1){
+      console.log('left true');
+
       turn(e.target.id, 'left');
     }
   }
   
-  const press = (e) => {
+  const press = e => {
     console.log(e.keyCode, 'pressed');
     e = e || window.event;
     if (e.keyCode === 38) {
@@ -166,8 +173,9 @@ function App() {
       }
     }
   }
+  
 
-  const turnOff = (e) => {
+  const turnOff = () => {
     setUp(false);
     setDown(false);
     setLeft(false);
