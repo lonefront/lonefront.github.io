@@ -132,28 +132,19 @@ function App() {
   
 
   const velocity = e => {
-    console.log('in velocity', 'y:', e.deltaY, 'x:', e.deltaX);
+    // console.log('in velocity', 'y:', e.deltaY, 'x:', e.deltaX);
     if (e.deltaY >= 1 && e.deltaX >= -1){
-      console.log('bottom true');
       turn(e.target.id, 'bottom');
     } else if (e.deltaY <= -1 && e.deltaX <= 1){
-      console.log('top true');
-
       turn(e.target.id, 'top');
-    }
-    if (e.deltaX >= 1 && e.deltaY >= -1){
-      console.log('right true');
-
+    } if (e.deltaX >= 1 && e.deltaY >= -1){
       turn(e.target.id, 'right');
     } else if (e.deltaX <= -1 && e.deltaY <= 1){
-      console.log('left true');
-
       turn(e.target.id, 'left');
     }
   }
   
   const press = e => {
-    console.log(e.keyCode, 'pressed');
     e = e || window.event;
     if (e.keyCode === 38) {
       if (activePg === 'p02' || activePg === 'p04' || activePg === 'p05'){
@@ -181,6 +172,12 @@ function App() {
     setLeft(false);
     setRight(false);
   }
+
+  // const handleClick = (e) => {
+  //   let el = e.target.offsetParent.childNodes[2].id;
+  //   document.getElementById(el).style.bottom = '0%';
+  //   console.log('top button clicked', document.getElementById(el));
+  // }
 
   
     return (

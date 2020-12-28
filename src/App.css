@@ -21,6 +21,11 @@
   opacity: 50%;
   bottom: -100%;
 }
+#p02-b {
+  background: red;
+  opacity: 50%;
+  bottom: 0%;
+}
 #p03 {
   background: orange;
   opacity: 50%;
