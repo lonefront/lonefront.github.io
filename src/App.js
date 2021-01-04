@@ -21,7 +21,6 @@ function App() {
 
   useEffect(() => {
     document.addEventListener('keydown', press);
-
     return () => {
       document.removeEventListener('keydown', press);
     }
@@ -38,23 +37,65 @@ function App() {
   const [activePg, setActivepg] = useState('p00');
   const [up, setUp] = useState(false);
   const [down, setDown] = useState(false);
-  const [left, setLeft] = useState(false);
-  const [right, setRight] = useState(false);
 
   const turn = (pg, dir) => {
-    ///- p00 page -\\\
     if (pg === 'p00' && dir === 'bottom'){
-      // nav to p02, scroll down
-      setP02('0%');
-      setActivepg('p02');
+      // nav to p01, scroll down
+      setP01('0%');
+      setActivepg('p01');
       setDown(true);
       setTimeout(turnOff, 200);  
     }
+    else if (pg === 'p01' && dir === 'top'){
+      // nav back to p00
+      setP01('-100%');
+      setActivepg('p00');
+      setUp(true);
+      setTimeout(turnOff, 200); 
+    }
+    else if (pg === 'p01' && dir === 'bottom'){
+      // nav to p02
+      setP02('0%');
+      setActivepg('p02');
+      setDown(true);
+      setTimeout(turnOff, 200); 
+    }
+    else if (pg === 'p02' && dir === 'top'){
+      // nav back to p01
+      setP02('-100%');
+      setP01('0%');
+      setActivepg('p01');
+      setUp(true);
+      setTimeout(turnOff, 200); 
+    }
     else if (pg === 'p02' && dir === 'bottom'){
-      // nav to p04, scroll down
+      // nav to p03, scroll down
+      setP03('0%');
+      setActivepg('p03');
+      setDown(true);
+      setTimeout(turnOff, 200); 
+    }
+    else if (pg === 'p03' && dir === 'top'){
+      // nav back to p02
+      setP03('-100%');
+      setP02('0%');
+      setActivepg('p02');
+      setUp(true);
+      setTimeout(turnOff, 200);
+    }
+    else if (pg === 'p03' && dir === 'bottom'){
+      // nav to p04
       setP04('0%');
       setActivepg('p04');
       setDown(true);
+      setTimeout(turnOff, 200); 
+    }
+    else if (pg === 'p04' && dir === 'top'){
+      // nav back to p03
+      setP04('-100%');
+      setP03('0%');
+      setActivepg('p03');
+      setUp(true);
       setTimeout(turnOff, 200); 
     }
     else if (pg === 'p04' && dir === 'bottom'){
@@ -64,69 +105,31 @@ function App() {
       setDown(true);
       setTimeout(turnOff, 200);
     }
+    else if (pg === 'p05' && dir === 'top'){
+      // nav back to p04
+      setP05('-100%');
+      setP04('0%');
+      setActivepg('p04');
+      setUp(true);
+      setTimeout(turnOff, 200); 
+    }
     else if (pg === 'p05' && dir === 'bottom'){
-      // nav back to p00
+      // nav to p00
+      setP01('-100%');
       setP02('-100%');
+      setP03('-100%');
       setP04('-100%');
       setP05('-100%');
       setActivepg('p00');
       setDown(true);
       setTimeout(turnOff, 200); 
     }
-    ///- p02 page -\\\
-    else if (pg === 'p02' && dir === 'top'){
-      // nav back to p00
-      setP02('-100%');
-      setActivepg('p00');
+    else if (pg === 'p00' && dir === 'top'){
+      setP05('0%');
+      setActivepg('p05');
       setUp(true);
       setTimeout(turnOff, 200); 
     }
-    ///- p04 page -\\\
-    else if (pg === 'p04' && dir === 'top'){
-      // nav back to p02
-      setP04('-100%');
-      setActivepg('p02');
-      setUp(true);
-      setTimeout(turnOff, 200); 
-    }
-    ///- p05 page -\\\
-    else if (pg === 'p05' && dir === 'top'){
-      // nav back to p04
-      setP05('-100%');
-      setActivepg('p04');
-      setUp(true);
-      setTimeout(turnOff, 200); 
-    }
-    ///- p01 page -\\\
-    else if (pg === 'p00' && dir === 'left'){
-      // nav to p01
-      setP01('0%');
-      setActivepg('p01');
-      setLeft(true);
-      setTimeout(turnOff, 200); 
-    }
-    else if (pg === 'p01' && dir === 'right'){
-      // nav back to p00
-      setP01('-100%');
-      setActivepg('p00');
-      setRight(true);
-      setTimeout(turnOff, 200); 
-    }
-    ///- p03 page -\\\
-    else if (pg === 'p02' && dir === 'right'){
-      // nav to p03
-      setP03('-0%');
-      setActivepg('p03');
-      setRight(true);
-      setTimeout(turnOff, 200); 
-    }
-    else if (pg === 'p03' && dir === 'left'){
-      // nav back to p02
-      setP03('-100%');
-      setActivepg('p02');
-      setLeft(true);
-      setTimeout(turnOff, 200);
-    }        
   }
 
   const scroll = useRef(debounce(e => {
@@ -139,36 +142,19 @@ function App() {
   
 
   const velocity = e => {
-    // console.log('in velocity', 'y:', e.deltaY, 'x:', e.deltaX);
     if (e.deltaY >= 1 && e.deltaX >= -1){
       turn(e.target.id, 'bottom');
     } else if (e.deltaY <= -1 && e.deltaX <= 1){
       turn(e.target.id, 'top');
-    } if (e.deltaX >= 1 && e.deltaY >= -1){
-      turn(e.target.id, 'right');
-    } else if (e.deltaX <= -1 && e.deltaY <= 1){
-      turn(e.target.id, 'left');
-    }
+    } 
   }
   
   const press = e => {
     e = e || window.event;
     if (e.keyCode === 38) {
-      if (activePg === 'p02' || activePg === 'p04' || activePg === 'p05'){
-        turn(activePg, 'top');
-      }
+      turn(activePg, 'top');
     } else if (e.keyCode === 40) {
-        if (activePg === 'p00' || activePg === 'p02' || activePg === 'p04' || activePg === 'p05'){
-          turn(activePg, 'bottom');
-      }
-    } else if (e.keyCode === 37) {
-        if (activePg === 'p00' || activePg === 'p03'){
-          turn(activePg, 'left');
-      }
-    } else if (e.keyCode === 39) {
-        if (activePg === 'p01' || activePg === 'p02'){
-          turn(activePg, 'right');
-      }
+      turn(activePg, 'bottom');
     }
   }
   
@@ -176,16 +162,15 @@ function App() {
   const turnOff = () => {
     setUp(false);
     setDown(false);
-    setLeft(false);
-    setRight(false);
   }
-  // const handleClick = (e) => {
-  //   let el = e.target.offsetParent.childNodes[2].id;
-  //   document.getElementById(el).style.bottom = '0%';
-  //   console.log('top button clicked', document.getElementById(el));
-  // }
-  const hover = () => {
-    console.log('hover');
+
+  const handleClick = (e) => {
+    let x = e.target.offsetParent.getAttribute("id");
+    if (x === 'btn-up'){
+      turn(activePg, 'top');
+    } else if (x === 'btn-down'){
+      turn(activePg, 'bottom');
+    }
   }
 
   
@@ -223,23 +208,16 @@ function App() {
               <source src={donut} type="video/mp4"/>
             </video>
           </div>
-          <div id="p01" className="screen" onWheel={scroll} style={{left: p01}}>
+          <div id="p01" className="screen" onWheel={scroll} style={{bottom: p01}}>
+            <video id="green-machine" autoPlay muted loop className="anim">  
+              <source src={greenMachine} type="video/mp4"/>
+            </video>
           </div>
           <div id="p02" className="screen" onWheel={scroll} style={{bottom: p02}}>
             <img src={nss01} alt="slide 2" className="slide-01"/>
           </div>
-          <div id="p03" className="screen" onWheel={scroll} style={{right: p03}}>
-            <img src={nss02} alt="slide 3" className="slide-02"/>
-          </div>
-          <div id="p04" className="screen" onWheel={scroll} style={{bottom: p04}}>
-            <img src={nss03} alt="slide 4" className="slide-02"/>
-          </div>
-          <div id="p05" className="screen" onWheel={scroll} style={{bottom: p05}}>
-            {/* <video id="green-machine" autoPlay muted loop className="anim">  
-              <source src={greenMachine} type="video/mp4"/>
-            </video> */}
-            {/* <div id="textblock"> */}
-              <pre id="textblock">
+          <div id="p03" className="screen" onWheel={scroll} style={{bottom: p03}}>
+          <pre id="textblock">
                 {`
 LIFE RINGS OUT            FROM INSIDE AN IMPLODED
 GLOSSARY: POPPED      PHENOMENA, DISUSED TECHNOS,
@@ -272,37 +250,19 @@ THAT                          COMPELS   MOVEMENT,
 AND            SETS             YOU         FREE.
                 `}
               </pre>
-            {/* </div> */}
           </div>
-          {activePg === 'p00' ? ''
-            : activePg === 'p01' ? ''
-            : activePg === 'p03' ? ''
-            : <div id="btn-up" className={up ? 'btn-on' : 'btn-off'}>
-              <img src={arrow} alt="arrow" onMouseOver={hover}/>
-            </div>
-          }
-          {activePg === 'p01' ? ''
-            : activePg === 'p03' ? ''
-            : <div id="btn-down" className={down ? 'btn-on' : 'btn-off'}>
-              <img src={arrow} alt="arrow"/>
-            </div>
-          }
-          {activePg === 'p01' ? ''
-          : activePg === 'p02' ? ''
-          : activePg === 'p04' ? ''
-          : activePg === 'p05' ? ''
-          : <div id="btn-left" className={left ? 'btn-on' : 'btn-off'}>
-            <img src={arrow} alt="arrow" className="arrow"/>
+          <div id="p04" className="screen" onWheel={scroll} style={{bottom: p04}}>
+            <img src={nss02} alt="slide 3" className="slide-02"/>
           </div>
-          }
-          {activePg === 'p00' ? ''
-          : activePg === 'p03' ? ''
-          : activePg === 'p04' ? ''
-          : activePg === 'p05' ? ''
-          : <div id="btn-right" className={right ? 'btn-on' : 'btn-off'}>
-            <img src={arrow} alt="arrow" className="arrow"/>
+          <div id="p05" className="screen" onWheel={scroll} style={{bottom: p05}}>
+            <img src={nss03} alt="slide 4" className="slide-02"/>
           </div>
-          }
+          <div id="btn-up" className={up ? 'btn-on' : 'btn-off'}>
+              <img src={arrow} alt="arrow" onClick={handleClick}/>
+          </div>
+          <div id="btn-down" className={down ? 'btn-on' : 'btn-off'}>
+              <img src={arrow} alt="arrow" onClick={handleClick}/>
+          </div>
         </div>
       </div>
       );
