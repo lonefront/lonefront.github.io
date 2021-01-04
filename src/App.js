@@ -3,14 +3,19 @@ import debounce from 'lodash/debounce'
 import './App.css';
 import './Header.css'
 
-import logo from './assets/logotype.svg'
-import line from './assets/line.svg'
-import sigil from './assets/sigil.svg'
-import tab from './assets/tab.svg'
-import disc from './assets/disc.svg'
+import logo from './assets/svg/logotype.svg'
+import line from './assets/svg/line.svg'
+import sigil from './assets/svg/sigil.svg'
+import tab from './assets/svg/tab-0.svg'
+import disc from './assets/svg/disc.svg'
 
-import donut from './assets/blue-donut.mp4'
-import greenMachine from './assets/donut-24.mp4'
+import donut from './assets/mp4/blue-donut.mp4'
+import greenMachine from './assets/mp4/donut-24.mp4'
+
+import nss01 from './assets/png/nss-01.png'
+import nss02 from './assets/png/nss-02.png'
+import nss03 from './assets/png/nss-03.png'
+import arrow from './assets/png/tab.png'
 
 function App() {
 
@@ -21,6 +26,8 @@ function App() {
       document.removeEventListener('keydown', press);
     }
   })
+
+  const array = ['phrase one', 'phrase two', 'phrase three', 'etc', 'and more'];
 
 
   const [p01, setP01] = useState('-100%');
@@ -172,40 +179,43 @@ function App() {
     setLeft(false);
     setRight(false);
   }
-
   // const handleClick = (e) => {
   //   let el = e.target.offsetParent.childNodes[2].id;
   //   document.getElementById(el).style.bottom = '0%';
   //   console.log('top button clicked', document.getElementById(el));
   // }
+  const hover = () => {
+    console.log('hover');
+  }
 
   
     return (
       <div id="container">
-        <div className="header">
-          <img src={logo} alt="Lonefront" className="logotype"/>
-          <img src={sigil} alt="Logo" className="sigil"/>
-          <main className="header-tags">
-            <div>
-              <img src={tab} alt="tab" className="tag"/>
-              SLIDETYPE:[{activePg}]
-            </div>
-            <div>
-              <img src={tab} alt="tab" className="tag"/>
-              INDEX:[]
-            </div>
-            <div>
-              <img src={tab} alt="tab" className="tag"/>
-              TIMESTAMP:[]
-            </div>
-            <div>
-              <img src={tab} alt="tab" className="tag"/>
-              [INSERT PHRASE VARIABLE]
-            </div>
-          </main>
-          <img src={line} alt="line" className="line"/>
-          <img src={disc} alt="center" className="disc"/>
-        </div>
+          <div className="header">
+            <img src={logo} alt="Lonefront" className="logotype"/>
+            <img src={sigil} alt="Logo" className="sigil"/>
+            <main className="header-tags">
+              <div>
+                <img src={tab} alt="tab" className="tag"/>
+                INDEX:[{activePg[1]}{activePg[2]}]
+              </div>
+              {/* <div>
+                <img src={tab} alt="tab" className="tag"/>
+                INDEX:[]
+              </div> */}
+              <div>
+                <img src={tab} alt="tab" className="tag"/>
+                TIMESTAMP:[]
+              </div>
+              <div>
+                <img src={tab} alt="tab" className="tag"/>
+                [{array[activePg[2]]}]
+              </div>
+            </main>
+            <img src={line} alt="line" className="line"/>
+            <img src={disc} alt="center" className="disc"/>
+            <div id="header-container"></div>
+          </div>          
         <div className="margin"></div>
         <div id="container-center" className="screen">
           <div id="p00" className="screen" onWheel={scroll}>
@@ -216,20 +226,83 @@ function App() {
           <div id="p01" className="screen" onWheel={scroll} style={{left: p01}}>
           </div>
           <div id="p02" className="screen" onWheel={scroll} style={{bottom: p02}}>
+            <img src={nss01} alt="slide 2" className="slide-01"/>
           </div>
           <div id="p03" className="screen" onWheel={scroll} style={{right: p03}}>
+            <img src={nss02} alt="slide 3" className="slide-02"/>
           </div>
           <div id="p04" className="screen" onWheel={scroll} style={{bottom: p04}}>
+            <img src={nss03} alt="slide 4" className="slide-02"/>
           </div>
           <div id="p05" className="screen" onWheel={scroll} style={{bottom: p05}}>
-            <video id="green-machine" autoPlay muted loop className="anim">  
+            {/* <video id="green-machine" autoPlay muted loop className="anim">  
               <source src={greenMachine} type="video/mp4"/>
-            </video>
+            </video> */}
+            {/* <div id="textblock"> */}
+              <pre id="textblock">
+                {`
+LIFE RINGS OUT            FROM INSIDE AN IMPLODED
+GLOSSARY: POPPED      PHENOMENA, DISUSED TECHNOS,
+COLONIZED SPACES,  HOLLOWED-OUT COMEDOWNS AND THE
+INARTICULABLE          NOISES THEY WITHHOLD. THIS
+UNBEARABLE              NOISE  BEYOND THE PALE OF
+ARTICULATION        IS GIVING LIFE AFTER BABEL: A
+RHYTHMIC AND               TONAL PROGRAM  FOR THE
+REANIMATION          OF DEAD MATERIALS, RENDERING
+IMMANENT A        SYNTONIC GRAMMAR OF THE SPIRIT.
+NODES OPEN ON     THE ONE END TO A BRUTALITY: THE
+MONOLITHIC         GRIND OF SILICON  ON CARBON, A
+GLACIAL SCREAM,    WAKE OF EXPROPRIATED BLOOD AND
+DIRT JAMMING  UP  THE OPTICS. ON THE OTHER END, A
+COY ECSTASY:         SELF-TAUGHT PROMETHEANS TWO-
+STEPPING IN         THE CHURCH OF HOUSE, SPEAKING
+LANGUAGES THEY     THEMSELVES   DON'T UNDERSTAND,
+SLIDING THROUGH   TRANSATLANTIC FIBERS TO PULL UP
+ON THE STEEL    HUSKS OF SERVER FARMS AND HEX THE
+SURVEILLANCE   CHAINS  THEIR DAMN SELVES. BETWEEN
+THESE TWIN      VALENCES     LIES THE CULTIVATION
+OF A           DEEP MNEMONIC NOD, EVER-FLICKERING
+BETWEEN  THE   SPECULATIVE FUTURE OF PROGRESS AND
+THE  DRONE OF   DECAY. GET IN TUNE WITH CARCASSES
+OF        FACTORIES, A CHORUS OF TONGUES SPOUTING
+SILENT MANTRAS,         A SILENT STREAM OF ERROR-
+RIDDLED PROGRAM    SCRIPTS:  THE FLUX AND SNAP OF
+TRAUMA  INCANTS        THE  NOISE BEYOND LANGUAGE
+THAT                          COMPELS   MOVEMENT,
+AND            SETS             YOU         FREE.
+                `}
+              </pre>
+            {/* </div> */}
           </div>
-          <div id="btn-up" className={up ? 'btn-on' : 'btn-off'}>&#8593;</div>
-          <div id="btn-down" className={down ? 'btn-on' : 'btn-off'}>&#8595;</div>
-          <div id="btn-left" className={left ? 'btn-on' : 'btn-off'}>&#8592;</div>
-          <div id="btn-right" className={right ? 'btn-on' : 'btn-off'}>&#8594;</div>
+          {activePg === 'p00' ? ''
+            : activePg === 'p01' ? ''
+            : activePg === 'p03' ? ''
+            : <div id="btn-up" className={up ? 'btn-on' : 'btn-off'}>
+              <img src={arrow} alt="arrow" onMouseOver={hover}/>
+            </div>
+          }
+          {activePg === 'p01' ? ''
+            : activePg === 'p03' ? ''
+            : <div id="btn-down" className={down ? 'btn-on' : 'btn-off'}>
+              <img src={arrow} alt="arrow"/>
+            </div>
+          }
+          {activePg === 'p01' ? ''
+          : activePg === 'p02' ? ''
+          : activePg === 'p04' ? ''
+          : activePg === 'p05' ? ''
+          : <div id="btn-left" className={left ? 'btn-on' : 'btn-off'}>
+            <img src={arrow} alt="arrow" className="arrow"/>
+          </div>
+          }
+          {activePg === 'p00' ? ''
+          : activePg === 'p03' ? ''
+          : activePg === 'p04' ? ''
+          : activePg === 'p05' ? ''
+          : <div id="btn-right" className={right ? 'btn-on' : 'btn-off'}>
+            <img src={arrow} alt="arrow" className="arrow"/>
+          </div>
+          }
         </div>
       </div>
       );
