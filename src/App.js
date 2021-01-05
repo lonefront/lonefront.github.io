@@ -133,7 +133,6 @@ function App() {
   }
 
   const scroll = useRef(debounce(e => {
-    console.log('scrolling', e.target.id);
     velocity(e);
   }, 47, {
     leading: true,
@@ -201,7 +200,9 @@ function App() {
             <img src={disc} alt="center" className="disc"/>
             <div id="header-container"></div>
           </div>          
-        <div className="margin"></div>
+        <div className="margin">
+          ABCDEFG
+        </div>
         <div id="container-center" className="screen">
           <div id="p00" className="screen" onWheel={scroll}>
             <video className="anim" autoPlay muted loop>  
