@@ -23,11 +23,26 @@
   width: 95vh;
   height: 10%;
   z-index: 1;
-  background-image: url('assets/grid-png.png');
+  background-image: url('assets/png/grid-png.png');
   background-repeat: no-repeat;
   position: fixed;
-  top: 2.25%;
+  top: 3%;
   background-size: contain;
+}
+#header-container {
+  background: black;
+  position: absolute;
+  top: -1vh;
+  border-radius: 1vh;
+  opacity: 45%;
+  border: solid;
+  border-color: black;
+  left: -1.2vh;
+  border-width: medium;
+  height: 8.9vh;
+  z-index: -1;
+  border-width: 1em;
+  width: 94vh;
 }
 .sigil {
   position: absolute;
@@ -64,11 +79,12 @@
 main div {
   /* margin-right: 18vh; */
   margin-top: 2%;
-  font-size: 1vh;
+  font-size: 1.5vh;
   /* white-space: nowrap; */
 }
 .tag {
-  height: 5%;
+  height: 7%;
   position: absolute;
-  top: 83%;
+  top: 95%;
+  fill: red;
 }

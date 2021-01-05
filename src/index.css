@@ -1,6 +1,6 @@
 html {
   overflow: hidden;
-  overscroll-behavior-x: none;
+  /* overscroll-behavior-x: none; */
   overscroll-behavior-y: none;
   /* height: 100%; */
 }
