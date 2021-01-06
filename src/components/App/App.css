@@ -8,7 +8,7 @@
   height: 100vh;
   bottom: 0%;
   transition: all 500ms;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 /* 
 #p01 {
@@ -19,6 +19,13 @@
 
 #green-machine {
   opacity: 50%;
+}
+#list {
+  text-align: center;
+  list-style: none;
+  position: absolute;
+  right: 16vh;
+  top: 30vh;
 }
 
 
@@ -50,15 +57,15 @@
   opacity: 90%;  
   pointer-events: none;
 }
-.margin {
+/* .margin {
   left: 0%;
-  /* background: #939597; */
+  background: #939597;
   background: black;
   position: fixed;
   width: 100%;
   height: 100%;
   bottom: 0%;
-}
+} */
 
 /* buttons */
 #btn-up {
@@ -128,3 +135,29 @@
   /* opacity: 0%; */
 }
 
+#border-left, #border-right {
+  background: antiquewhite;
+  position: absolute;
+  width: 0.2vw;
+  height: 100%;
+}
+#border-left {
+  left: -1.7vh;
+}
+#border-right {
+  right: -1.7vh;
+}
+#border-left .dot-up, #border-left .dot-down {
+  left: -1.5vh;
+}
+#border-right .dot-up, #border-right .dot-down {
+  right: -1.5vh;
+}
+.dot-up {
+  position: absolute;
+  top: 1vh;
+}
+.dot-down {
+  position: absolute;
+  top: 98vh;
+}

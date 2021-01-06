@@ -10,13 +10,19 @@
   50% {filter: invert(0)}
   75% {filter: invert(1)}
 }
+@keyframes fade2 {
+  0% {filter: invert(0);}
+  25% {filter: invert(1)}
+  50% {filter: invert(0)}
+  75% {filter: invert(1)}
+}
 .logotype:hover {
   filter: invert(1);
   background: red;
   /* cursor: url('../../assets/sigil-loq.svg'), auto; */
   cursor: pointer;
   overflow: clip;
-  animation-name: fade;
+  animation-name: fade2;
   animation-duration: 247ms;
 }
 .header {

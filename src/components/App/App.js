@@ -12,6 +12,8 @@ import nss03 from '../../assets/png/nss-03.png'
 import arrow from '../../assets/png/tab.png'
 
 import Header from '../HeaderDesktop/HeaderDesktop'
+import AudioPlayer from '../AudioPlayer/AudioPlayer'
+import Margin from '../Margin/Margin'
 
 function App() {
 
@@ -25,9 +27,6 @@ function App() {
       document.removeEventListener('keydown', press);
     }
   })
-
-  // const array = ['phrase one', 'phrase two', 'phrase three', 'etc', 'and more'];
-
 
   const [p01, setP01] = useState('-100%');
   const [p02, setP02] = useState('-100%');
@@ -45,6 +44,12 @@ function App() {
       setActivepg('p01');
       setDown(true);
       setTimeout(turnOff, 200);  
+    }
+    else if (pg === 'p00' && dir === 'top'){
+      setP05('0%');
+      setActivepg('p05');
+      setUp(true);
+      setTimeout(turnOff, 200); 
     }
     else if (pg === 'p01' && dir === 'top'){
       // nav back to p00
@@ -124,12 +129,6 @@ function App() {
       setDown(true);
       setTimeout(turnOff, 200); 
     }
-    else if (pg === 'p00' && dir === 'top'){
-      setP05('0%');
-      setActivepg('p05');
-      setUp(true);
-      setTimeout(turnOff, 200); 
-    }
   }
 
   const scroll = useRef(debounce(e => {
@@ -164,9 +163,6 @@ function App() {
   }
 
   const handleClick = (e) => {
-    let y = document.getElementById('audio');
-    y.currentTime += 300;
-    console.log(y);
     let x = e.target.offsetParent.getAttribute("id");
     if (x === 'btn-up'){
       turn(activePg, 'top');
@@ -174,24 +170,106 @@ function App() {
       turn(activePg, 'bottom');
     }
   }
-
-  const handlePlay = () => {
-    console.log('played');
+  const jump = (page) => {
+    switch (page) {
+      case 'p00':
+        console.log('case p00');
+        setP01('-100%');
+        setP02('-100%');
+        setP03('-100%');
+        setP04('-100%');
+        setP05('-100%');
+        setActivepg('p00');
+        setDown(true);
+        setTimeout(turnOff, 200);
+        break;
+      case 'p01':
+        setP01('0%');
+        setP02('-100%');
+        setP03('-100%');
+        setP04('-100%');
+        setP05('-100%');
+        setActivepg('p01');
+        setDown(true);
+        setTimeout(turnOff, 200);
+        break;
+      case 'p02':
+        setP01('-100%');
+        setP02('0%');
+        setP03('-100%');
+        setP04('-100%');
+        setP05('-100%');
+        setActivepg('p02');
+        setDown(true);
+        setTimeout(turnOff, 200);
+        break;
+      case 'p03':
+        setP01('-100%');
+        setP02('-100%');
+        setP03('0%');
+        setP04('-100%');
+        setP05('-100%');
+        setActivepg('p03');
+        setDown(true);
+        setTimeout(turnOff, 200);
+        break;
+      case 'p04':
+        setP01('-100%');
+        setP02('-100%');
+        setP03('-100%');
+        setP04('0%');
+        setP05('-100%');
+        setActivepg('p04');
+        setDown(true);
+        setTimeout(turnOff, 200);
+        break;
+      case 'p05':
+        setP01('-100%');
+        setP02('-100%');
+        setP03('-100%');
+        setP04('-100%');
+        setP05('0%');
+        setActivepg('p05');
+        setDown(true);
+        setTimeout(turnOff, 200);
+        break;
+      default:
+        break;
+    }
   }
-  
+
     return (
       <>
         {isDesktopOrLaptop && 
         <div id="container">
           <Header activePg={activePg}/>
-          <div className="margin">
-              <div id="player">
-               <iframe width="10%" title="mixcloud" height="60" src={`https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&light=1&hide_artwork=1&feed=%2Flonefront%2F2019-mixtape%2F`} frameborder="0" ></iframe>
-              </div>
-            ABCDEFG
+          <Margin/>
+          <div id="scanner">
+            <ul id="list">
+              <li onClick={(e)=>jump('p00')}>000</li>
+              <li>&#183;</li>
+              <li>&#183;</li>
+              <li onClick={(e)=>jump('p01')}>001</li>
+              <li>&#183;</li>
+              <li>&#183;</li>
+              <li onClick={(e)=>jump('p02')}>010</li>
+              <li>&#183;</li>
+              <li>&#183;</li>
+              <li onClick={(e)=>jump('p03')}>011</li>
+              <li>&#183;</li>
+              <li>&#183;</li>
+              <li onClick={(e)=>jump('p04')}>100</li>
+              <li>&#183;</li>
+              <li>&#183;</li>
+              <li onClick={(e)=>jump('p05')}>101</li>
+            </ul>
           </div>
+          {/* <div className="margin">
+            ABCDEFG
+          </div> */}
           <div id="container-center" className="screen">
             <div id="p00" className="screen" onWheel={scroll}>
+              <AudioPlayer/>
               <video className="anim" autoPlay muted loop>  
                 <source src={donut} type="video/mp4"/>
               </video>
@@ -205,7 +283,7 @@ function App() {
               <img src={nss01} alt="slide 2" className="slide-01"/>
             </div>
             <div id="p03" className="screen" onWheel={scroll} style={{bottom: p03}}>
-            <pre id="textblock">
+              <pre id="textblock">
                   {
 `LIFE RINGS OUT            FROM INSIDE AN IMPLODED
 GLOSSARY: POPPED      PHENOMENA, DISUSED TECHNOS,
@@ -251,6 +329,14 @@ AND            SETS             YOU         FREE.`
             <div id="btn-down" className={down ? 'btn-on' : 'btn-off'}>
                 <img src={arrow} alt="arrow" onClick={handleClick}/>
             </div>
+            <div id="border-left">
+            <div className="dot-up">&#8226;</div>
+            <div className="dot-down">&#8226;</div>
+          </div>
+          <div id="border-right">
+            <div className="dot-up">&#8226;</div>
+            <div className="dot-down">&#8226;</div>
+          </div>
           </div>
         </div>
       }
