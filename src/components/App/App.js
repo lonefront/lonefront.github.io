@@ -237,7 +237,9 @@ function App() {
         break;
     }
   }
-
+  const sayHello = () => {
+    console.log('helo!');
+  }
     return (
       <>
         {isDesktopOrLaptop && 
@@ -270,7 +272,7 @@ function App() {
           <div id="container-center" className="screen">
             <div id="p00" className="screen" onWheel={scroll}>
               <AudioPlayer/>
-              <video className="anim" autoPlay muted loop>  
+              <video className="anim" autoPlay muted loop onClick={sayHello}>  
                 <source src={donut} type="video/mp4"/>
               </video>
             </div>

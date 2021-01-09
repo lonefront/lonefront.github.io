@@ -35,6 +35,9 @@
   top: 3%;
   background-size: contain;
 }
+.header-tags {
+  color: antiquewhite ;
+}
 #header-container {
   background: black;
   position: absolute;
@@ -67,14 +70,12 @@
   left: 0;
 }
 .disc {
+  pointer-events: none;
   position: absolute;
   right: 45%;
   width: 10%;
   top: 425.5%;
   opacity: 33%;
-}
-.disc svg {
-  fill: red;
 }
 
 .header-tags {

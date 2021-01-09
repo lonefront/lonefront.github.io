@@ -11,6 +11,8 @@ function Header(props) {
 
   const array = ['phrase one', 'phrase two', 'phrase three', 'etc', 'and more'];
 
+  
+
   return (
     <div className="header">
       <img src={logo} alt="Lonefront" className="logotype"/>

@@ -7,6 +7,13 @@
   height: 100%;
   /* bottom: 0%; */
 }
+#subscribe {
+  color: black;
+}
+#label {
+  color: antiquewhite;
+}
+
 
 #info-box {
   position: absolute;
@@ -19,6 +26,7 @@
   border-style: solid;
   border-color: antiquewhite;
   border-radius: 1vh;
+  color: antiquewhite;
 }
 #wrapper {
   padding-top: 0.5vh;

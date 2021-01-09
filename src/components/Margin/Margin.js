@@ -1,4 +1,5 @@
 import React from 'react'
+import MailchimpSubscribe from 'react-mailchimp-subscribe'
 import './Margin.css'
 
 function Margin() {
@@ -14,7 +15,11 @@ function Margin() {
         </ul>
         </div>
       </div>
-      ABCDEFG
+      <div id="subscribe">
+      <div id="label">Subscribe</div>
+      <MailchimpSubscribe url={process.env.REACT_APP_MAILCHIMP_URL} />
+      </div>
+      
     </div>
   )
 }
