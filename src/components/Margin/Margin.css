@@ -1,0 +1,34 @@
+.margin {
+  left: 0%;
+  /* background: #939597; */
+  background: black;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  /* bottom: 0%; */
+}
+#subscribe {
+  color: black;
+}
+#label {
+  color: antiquewhite;
+}
+
+
+#info-box {
+  position: absolute;
+  right: 0vh;
+  /* float: right; */
+  background: black;
+  top: 10vh;
+  width: 22vh;
+  height: 14vh;
+  border-style: solid;
+  border-color: antiquewhite;
+  border-radius: 1vh;
+  color: antiquewhite;
+}
+#wrapper {
+  padding-top: 0.5vh;
+  width: 100%;
+}

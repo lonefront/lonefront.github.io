@@ -10,25 +10,41 @@
   50% {filter: invert(0)}
   75% {filter: invert(1)}
 }
+@keyframes fade2 {
+  0% {filter: invert(0);}
+  25% {filter: invert(1)}
+  50% {filter: invert(0)}
+  75% {filter: invert(1)}
+}
 .logotype:hover {
   filter: invert(1);
   background: red;
   /* cursor: url('../../assets/sigil-loq.svg'), auto; */
   cursor: pointer;
   overflow: clip;
-  animation-name: fade;
+  animation-name: fade2;
   animation-duration: 247ms;
 }
 .header {
   width: 95vh;
   height: 10%;
   z-index: 1;
+<<<<<<< HEAD:src/components/HeaderDesktop/Header.css
+  background-image: url('../../assets/png/grid-png.png');
+=======
   background-image: url('assets/png/grid-png.png');
+>>>>>>> main:src/Header.css
   background-repeat: no-repeat;
   position: fixed;
   top: 3%;
   background-size: contain;
 }
+<<<<<<< HEAD:src/components/HeaderDesktop/Header.css
+.header-tags {
+  color: antiquewhite ;
+}
+=======
+>>>>>>> main:src/Header.css
 #header-container {
   background: black;
   position: absolute;
@@ -61,14 +77,12 @@
   left: 0;
 }
 .disc {
+  pointer-events: none;
   position: absolute;
   right: 45%;
   width: 10%;
   top: 425.5%;
   opacity: 33%;
-}
-.disc svg {
-  fill: red;
 }
 
 .header-tags {
