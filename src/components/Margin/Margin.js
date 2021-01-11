@@ -17,7 +17,9 @@ function Margin() {
       </div>
       <div id="subscribe">
       <div id="label">Subscribe</div>
-      <MailchimpSubscribe url={process.env.REACT_APP_MAILCHIMP_URL} />
+      <div id="mailchimp">
+        <MailchimpSubscribe url={process.env.REACT_APP_MAILCHIMP_URL}/>
+      </div>
       </div>
       
     </div>

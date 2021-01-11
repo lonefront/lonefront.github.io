@@ -271,13 +271,23 @@ function App() {
             ABCDEFG
           </div> */}
           <div id="container-center" className="screen">
+            {/* panel 00 */}
             <div id="p00" className="screen" onWheel={scroll}>
               <AudioPlayer/>
               <video className="anim" autoPlay muted loop onClick={sayHello}>  
                 <source src={donut} type="video/mp4"/>
               </video>
             </div>
+            {/* panel 01 */}
             <div id="p01" className="screen" onWheel={scroll} style={{bottom: p01}}>
+              <div className="bandcamp-player">
+                <iframe title="combined path" style={{border: 0, width: '200px', height: '200px'}} src="https://bandcamp.com/EmbeddedPlayer/album=275126130/size=large/bgcol=333333/linkcol=0f91ff/minimal=true/transparent=true/" seamless>
+                  <a href="https://lonefront.bandcamp.com/album/combined-path">Combined Path by Lonefront</a>
+                </iframe>
+                <iframe title="gradient descent" style={{border: 0, width: '200px', height: '200px'}} src="https://bandcamp.com/EmbeddedPlayer/album=1390881402/size=large/bgcol=333333/linkcol=0f91ff/minimal=true/transparent=true/" seamless>
+                  <a href="https://lonefront.bandcamp.com/album/gradient-descent">Gradient Descent by Lonefront</a>
+                </iframe>
+              </div>
               <video id="green-machine" autoPlay muted loop className="anim">  
                 <source src={greenMachine} type="video/mp4"/>
               </video>

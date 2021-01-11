@@ -27,10 +27,21 @@
   text-align: center;
   list-style: none;
   position: absolute;
-  right: 16vh;
+  right: 14%;
   top: 30vh;
 }
 
+.bandcamp-player {
+  position: absolute;
+  /* z-index: 1; */
+  /* opacity: 90%; */
+  right: 50%;
+  top: 40%;
+}
+
+.bandcamp-player iframe {
+  margin: 10px;
+}
 
 /* center elems */
 .anim {
