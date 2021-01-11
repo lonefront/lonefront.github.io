@@ -1,5 +1,6 @@
 .margin {
   left: 0%;
+  top: 0;
   /* background: #939597; */
   background: black;
   position: fixed;
@@ -16,19 +17,21 @@
 
 
 #info-box {
-  position: absolute;
+  position: fixed;
   right: 0vh;
-  /* float: right; */
+  float: right;
   background: black;
   top: 10vh;
-  width: 22vh;
-  height: 14vh;
+  width: 14%;
+  /* height: 14vh; */
   border-style: solid;
   border-color: antiquewhite;
   border-radius: 1vh;
   color: antiquewhite;
 }
 #wrapper {
-  padding-top: 0.5vh;
+  display: flex;
+  flex-direction: column;
+  /* padding-top: 0.5vh; */
   width: 100%;
 }

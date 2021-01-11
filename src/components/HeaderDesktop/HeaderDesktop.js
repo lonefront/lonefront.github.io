@@ -2,7 +2,7 @@ import React from 'react'
 import './Header.css'
 
 import logo from '../../assets/svg/logotype.svg'
-import line from '../../assets/svg/line.svg'
+// import line from '../../assets/svg/line.svg'
 import sigil from '../../assets/svg/sigil.svg'
 import tab from '../../assets/svg/tab-0.svg'
 import disc from '../../assets/svg/disc.svg'
@@ -11,10 +11,9 @@ function Header(props) {
 
   const array = ['phrase one', 'phrase two', 'phrase three', 'etc', 'and more'];
 
-  
-
   return (
     <div className="header">
+      <div className="header-content">
       <img src={logo} alt="Lonefront" className="logotype"/>
         <img src={sigil} alt="Logo" className="sigil"/>
           <main className="header-tags">
@@ -35,9 +34,11 @@ function Header(props) {
               [{array[props.activePg[2]]}]
             </div>
           </main>
-        <img src={line} alt="line" className="line"/>
+          <hr className="line"/>
+          {/* <img src={line} alt="line" className="line"/> */}
+      </div>
       <img src={disc} alt="center" className="disc"/>
-    <div id="header-container"></div>
+    <div id="background"></div>
   </div>   
 );
 }

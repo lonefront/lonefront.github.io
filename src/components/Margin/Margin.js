@@ -9,7 +9,7 @@ function Margin() {
         <div id="wrapper">          
         TO NAVIGATE:
         <ul>
-          <li>ARROW KEYS &#8592;&#8593;&#8594;&#8595;</li>
+          <li>ARROW KEYS &#8593;&#8595;</li>
           <li>SCROLL</li>
           <li>CLICK BUTTONS</li>
         </ul>

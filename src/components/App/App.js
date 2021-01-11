@@ -242,9 +242,10 @@ function App() {
   }
     return (
       <>
-        {isDesktopOrLaptop && 
+        {isDesktopOrLaptop && (
+        <>
+        <Header activePg={activePg}/>
         <div id="container">
-          <Header activePg={activePg}/>
           <Margin/>
           <div id="scanner">
             <ul id="list">
@@ -341,6 +342,8 @@ AND            SETS             YOU         FREE.`
           </div>
           </div>
         </div>
+        </>
+        )
       }
       </>
       );

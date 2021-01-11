@@ -1,5 +1,6 @@
 .logotype {
-  height: 37.8%;
+  /* height: 37.8%; */
+  width: 25%;
   margin-left: 0.25%;
   margin-top: 0.75%;
   transition: all 1000ms;
@@ -26,32 +27,35 @@
   animation-duration: 247ms;
 }
 .header {
-  width: 95vh;
+  width: 700px;
+  margin: 0 auto;
   height: 10%;
   z-index: 1;
   background-image: url('../../assets/png/grid-png.png');
   background-repeat: no-repeat;
-  position: fixed;
   top: 3%;
   background-size: contain;
+  position: relative;
+  z-index: 100;
+  padding: 10px;
+}
+
+.header-content {
+  padding: 10px;
 }
 .header-tags {
   color: antiquewhite ;
 }
-#header-container {
+#background {
   background: black;
   position: absolute;
-  top: -1vh;
-  border-radius: 1vh;
+  top: 0;
+  left: 0;
   opacity: 45%;
-  border: solid;
-  border-color: black;
-  left: -1.2vh;
-  border-width: medium;
-  height: 8.9vh;
   z-index: -1;
-  border-width: 1em;
-  width: 94vh;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
 }
 .sigil {
   position: absolute;
@@ -66,16 +70,21 @@
   filter: invert(1);
 }
 .line {
-  position: absolute;
-  left: 0;
+  margin-top: 0vh;
+  /* position: absolute; */
+  /* left: 0; */
 }
+
 .disc {
   pointer-events: none;
-  position: absolute;
-  right: 45%;
   width: 10%;
-  top: 425.5%;
   opacity: 33%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform-origin: 50% 50%;
+  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
 }
 
 .header-tags {
@@ -87,6 +96,7 @@ main div {
   /* margin-right: 18vh; */
   margin-top: 2%;
   font-size: 1.5vh;
+  width: 25%;
   /* white-space: nowrap; */
 }
 .tag {
