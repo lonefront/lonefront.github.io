@@ -13,28 +13,22 @@
 #scanner {
   color: antiquewhite;
 }
-/* 
-#p01 {
-  background: green;
-  opacity: 50%;
-  left: -100%;
-} */
 
-#green-machine {
-  opacity: 50%;
-}
 #list {
   text-align: center;
   list-style: none;
   position: absolute;
-  right: 14%;
+  transform: translate(504px, 0px);
   top: 30vh;
+}
+#p01 {
+  opacity: 90%;
 }
 
 .bandcamp-player {
   position: absolute;
   /* z-index: 1; */
-  /* opacity: 90%; */
+  /* opacity: 96%; */
   right: 50%;
   top: 40%;
 }
@@ -63,7 +57,7 @@
 }
 .slide-01 {
   height: 100vh;
-  opacity: 50%; 
+  opacity: 80%; 
   pointer-events: none; 
 }
 .slide-02 {

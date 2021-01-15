@@ -4,7 +4,7 @@ import debounce from 'lodash/debounce'
 import './App.css';
 
 import donut from '../../assets/mp4/blue-donut.mp4'
-import greenMachine from '../../assets/mp4/donut-24.mp4'
+import donut24 from '../../assets/mp4/donut-24.mp4'
 
 import nss01 from '../../assets/png/nss-01.png'
 import nss02 from '../../assets/png/nss-02.png'
@@ -173,7 +173,6 @@ function App() {
   const jump = (page) => {
     switch (page) {
       case 'p00':
-        console.log('case p00');
         setP01('-100%');
         setP02('-100%');
         setP03('-100%');
@@ -249,22 +248,22 @@ function App() {
           <Margin/>
           <div id="scanner">
             <ul id="list">
-              <li onClick={(e)=>jump('p00')}>000</li>
+              <li onClick={(e)=>jump('p00')}>Main</li>
               <li>&#183;</li>
               <li>&#183;</li>
-              <li onClick={(e)=>jump('p01')}>001</li>
+              <li onClick={(e)=>jump('p01')}>Charts</li>
               <li>&#183;</li>
               <li>&#183;</li>
-              <li onClick={(e)=>jump('p02')}>010</li>
+              <li onClick={(e)=>jump('p02')}>Art-01</li>
               <li>&#183;</li>
               <li>&#183;</li>
-              <li onClick={(e)=>jump('p03')}>011</li>
+              <li onClick={(e)=>jump('p03')}>Bio</li>
               <li>&#183;</li>
               <li>&#183;</li>
-              <li onClick={(e)=>jump('p04')}>100</li>
+              <li onClick={(e)=>jump('p04')}>Art-02</li>
               <li>&#183;</li>
               <li>&#183;</li>
-              <li onClick={(e)=>jump('p05')}>101</li>
+              <li onClick={(e)=>jump('p05')}>Art-03</li>
             </ul>
           </div>
           {/* <div className="margin">
@@ -288,13 +287,15 @@ function App() {
                   <a href="https://lonefront.bandcamp.com/album/gradient-descent">Gradient Descent by Lonefront</a>
                 </iframe>
               </div>
-              <video id="green-machine" autoPlay muted loop className="anim">  
-                <source src={greenMachine} type="video/mp4"/>
-              </video>
+              <video id="donut-24" autoPlay muted loop className="anim">  
+                <source src={donut24} type="video/mp4"/>
+              </video>              
             </div>
+            {/* panel 02 */}
             <div id="p02" className="screen" onWheel={scroll} style={{bottom: p02}}>
               <img src={nss01} alt="slide 2" className="slide-01"/>
             </div>
+          {/* panel 03 */}
             <div id="p03" className="screen" onWheel={scroll} style={{bottom: p03}}>
               <pre id="textblock">
                   {
@@ -330,9 +331,11 @@ AND            SETS             YOU         FREE.`
                   }
                 </pre>
             </div>
+            {/* panel 04 */}
             <div id="p04" className="screen" onWheel={scroll} style={{bottom: p04}}>
               <img src={nss02} alt="slide 3" className="slide-02"/>
             </div>
+            {/* panel 05 */}
             <div id="p05" className="screen" onWheel={scroll} style={{bottom: p05}}>
               <img src={nss03} alt="slide 4" className="slide-02"/>
             </div>

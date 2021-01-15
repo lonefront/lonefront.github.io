@@ -9,7 +9,8 @@ import disc from '../../assets/svg/disc.svg'
 
 function Header(props) {
 
-  const array = ['phrase one', 'phrase two', 'phrase three', 'etc', 'and more'];
+  const array = ['phrase one', 'phrase two', 'phrase three', 'etc', 'and more', 'there this a much'];
+  const pageIndex = ['000', '001', '010', '011', '100', '101'];
 
   return (
     <div className="header">
@@ -19,7 +20,7 @@ function Header(props) {
           <main className="header-tags">
             <div>
               <img src={tab} alt="tab" className="tag"/>
-              INDEX:[{props.activePg[1]}{props.activePg[2]}]
+              INDEX:[{pageIndex[props.activePg[2]]}]
             </div>
             <div>
               <img src={tab} alt="tab" className="tag"/>
