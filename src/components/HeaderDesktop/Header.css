@@ -1,9 +1,5 @@
 .logotype {
-  /* height: 37.8%; */
   width: 25%;
-  /* margin-left: 0.25%;
-  margin-top: 0.75%; */
-  /* padding-bottom: 16px; */
   transition: all 1000ms;
 }
 @keyframes fade {
@@ -21,26 +17,27 @@
 .logotype:hover {
   filter: invert(1);
   background: red;
-  /* cursor: url('../../assets/sigil-loq.svg'), auto; */
   cursor: pointer;
   overflow: clip;
   animation-name: fade2;
   animation-duration: 247ms;
 }
 .header {
-  width: 700px;
-  margin: 0 auto;
-  margin-top: 28px;
-  height: 10%;
+  width: 95vh;
+  height: 12%;
   z-index: 1;
   background-image: url('../../assets/png/grid-png.png');
   background-repeat: no-repeat;
-  top: 3%;
+  top: 2%;
   background-size: cover;
-  position: relative;
+  position: absolute;
   z-index: 100;
-  padding: 10px;
   border-radius: 10px;
+}
+#header-wrapper {
+  width: 100vh;
+  padding-left: 2.5%;
+  text-align-last: justify;
 }
 
 .header-content {
@@ -63,10 +60,9 @@
 .sigil {
   position: absolute;
   right: 0;
-  padding-right: 3%;
-  bottom: 54px;
-  /* padding-top: 0.5%; */
-  height: 47px;
+  padding-right: 2%;
+  bottom: 55%;
+  height: 33%;
 }
 .sigil:hover {
   animation-name: fade;
@@ -74,21 +70,16 @@
   filter: invert(1);
 }
 .line {
-  margin-top: 5px;
-  /* position: absolute; */
-  /* left: 0; */
+  margin-top: 0.5%;
 }
 
 .disc {
   pointer-events: none;
   width: 5%;
   opacity: 33%;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform-origin: 50% 50%;
-  transform: translateX(-50%);
-  transform: translate(-50%, -50%);
+  position: relative;
+  top: 31vh;
+  left: 48%;
 }
 
 .header-tags {
@@ -97,15 +88,12 @@
 }
 
 main div {
-  /* margin-right: 18vh; */
   margin-top: 2%;
-  font-size: 1.5vh;
   width: 25%;
-  /* white-space: nowrap; */
+  font-size: 0.66rem;
 }
 .tag {
-  height: 5px;
-  position: absolute;
-  top: 90px;
-  fill: red;
+  height: 0.6%;
+  position: fixed;
+  top: 12.5%;
 }

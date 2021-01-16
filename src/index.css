@@ -1,8 +1,11 @@
+* {
+  font-family: 'Metastandard', serif;
+  text-transform: uppercase;
+  font-size: 3vh;
+}
 html {
   overflow: hidden;
-  /* overscroll-behavior-x: none; */
   overscroll-behavior-y: none;
-  /* height: 100%; */
 }
 body {
   margin: 0;
@@ -16,7 +19,6 @@ body {
 @font-face {
   font-family: 'Metastandard';
   font-style: normal;
-  font-weight: 900;
   src: local('Metastandard'), url(./fonts/Metastandard-Mono.otf) format('opentype');
 }
 

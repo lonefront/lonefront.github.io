@@ -13,7 +13,8 @@ import arrow from '../../assets/png/tab.png'
 
 import Header from '../HeaderDesktop/HeaderDesktop'
 import AudioPlayer from '../AudioPlayer/AudioPlayer'
-import Margin from '../Margin/Margin'
+import MarginLeft from '../MarginLeft/MarginLeft'
+import MarginRight from '../MarginRight/MarginRight'
 
 function App() {
 
@@ -236,48 +237,28 @@ function App() {
         break;
     }
   }
-  const sayHello = () => {
-    console.log('helo!');
-  }
     return (
       <>
         {isDesktopOrLaptop && (
         <>
-        <Header activePg={activePg}/>
         <div id="container">
-          <Margin/>
-          <div id="scanner">
-            <ul id="list">
-              <li onClick={(e)=>jump('p00')}>Main</li>
-              <li>&#183;</li>
-              <li>&#183;</li>
-              <li onClick={(e)=>jump('p01')}>Charts</li>
-              <li>&#183;</li>
-              <li>&#183;</li>
-              <li onClick={(e)=>jump('p02')}>Art-01</li>
-              <li>&#183;</li>
-              <li>&#183;</li>
-              <li onClick={(e)=>jump('p03')}>Bio</li>
-              <li>&#183;</li>
-              <li>&#183;</li>
-              <li onClick={(e)=>jump('p04')}>Art-02</li>
-              <li>&#183;</li>
-              <li>&#183;</li>
-              <li onClick={(e)=>jump('p05')}>Art-03</li>
-            </ul>
+          <div id="left">
+            <MarginLeft/>
           </div>
-          {/* <div className="margin">
-            ABCDEFG
-          </div> */}
-          <div id="container-center" className="screen">
-            {/* panel 00 */}
+          <div id="center">
+          <div id="btn-up" className={up ? 'btn-on' : 'btn-off'}>
+                <img src={arrow} alt="arrow" onClick={handleClick}/>
+            </div>
+            <div id="btn-down" className={down ? 'btn-on' : 'btn-off'}>
+                <img src={arrow} alt="arrow" onClick={handleClick}/>
+            </div>
+\          <Header activePg={activePg}/>
             <div id="p00" className="screen" onWheel={scroll}>
               <AudioPlayer/>
-              <video className="anim" autoPlay muted loop onClick={sayHello}>  
+              <video className="anim" autoPlay muted loop>  
                 <source src={donut} type="video/mp4"/>
               </video>
             </div>
-            {/* panel 01 */}
             <div id="p01" className="screen" onWheel={scroll} style={{bottom: p01}}>
               <div className="bandcamp-player">
                 <iframe title="combined path" style={{border: 0, width: '200px', height: '200px'}} src="https://bandcamp.com/EmbeddedPlayer/album=275126130/size=large/bgcol=333333/linkcol=0f91ff/minimal=true/transparent=true/" seamless>
@@ -291,11 +272,9 @@ function App() {
                 <source src={donut24} type="video/mp4"/>
               </video>              
             </div>
-            {/* panel 02 */}
             <div id="p02" className="screen" onWheel={scroll} style={{bottom: p02}}>
               <img src={nss01} alt="slide 2" className="slide-01"/>
             </div>
-          {/* panel 03 */}
             <div id="p03" className="screen" onWheel={scroll} style={{bottom: p03}}>
               <pre id="textblock">
                   {
@@ -331,28 +310,27 @@ AND            SETS             YOU         FREE.`
                   }
                 </pre>
             </div>
-            {/* panel 04 */}
             <div id="p04" className="screen" onWheel={scroll} style={{bottom: p04}}>
               <img src={nss02} alt="slide 3" className="slide-02"/>
             </div>
-            {/* panel 05 */}
             <div id="p05" className="screen" onWheel={scroll} style={{bottom: p05}}>
               <img src={nss03} alt="slide 4" className="slide-02"/>
             </div>
-            <div id="btn-up" className={up ? 'btn-on' : 'btn-off'}>
-                <img src={arrow} alt="arrow" onClick={handleClick}/>
-            </div>
-            <div id="btn-down" className={down ? 'btn-on' : 'btn-off'}>
-                <img src={arrow} alt="arrow" onClick={handleClick}/>
-            </div>
+          </div>
+          <div id="border-left-enclosure">
             <div id="border-left">
-            <div className="dot-up">&#8226;</div>
-            <div className="dot-down">&#8226;</div>
+              <div className="dot-up">&#8226;</div>
+              <div className="dot-down">&#8226;</div>
+            </div>
           </div>
-          <div id="border-right">
-            <div className="dot-up">&#8226;</div>
-            <div className="dot-down">&#8226;</div>
+          <div id="border-right-enclosure">
+            <div id="border-right">
+              <div className="dot-up">&#8226;</div>
+              <div className="dot-down">&#8226;</div>
+            </div>           
           </div>
+          <div id="right">
+            <MarginRight jump={jump}/>
           </div>
         </div>
         </>

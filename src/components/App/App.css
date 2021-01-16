@@ -1,34 +1,18 @@
-* {
-  font-family: 'Metastandard', serif;
-  /* color:purple; */
-}
+
 .screen {
-  position: absolute;
+  position: fixed;
   width: 100vh;
   height: 100vh;
   bottom: 0%;
   transition: all 500ms;
-  /* overflow: hidden; */
-}
-#scanner {
-  color: antiquewhite;
 }
 
-#list {
-  text-align: center;
-  list-style: none;
-  position: absolute;
-  transform: translate(504px, 0px);
-  top: 30vh;
-}
 #p01 {
   opacity: 90%;
 }
 
 .bandcamp-player {
   position: absolute;
-  /* z-index: 1; */
-  /* opacity: 96%; */
   right: 50%;
   top: 40%;
 }
@@ -37,16 +21,32 @@
   margin: 10px;
 }
 
-/* center elems */
 .anim {
   pointer-events: none;
   width: 100%;
 }
 #container {
   display: flex;
+  flex-direction: row;
   height: 100vh;
-  justify-content: center;
 }
+#center {
+  order: 3;
+  flex-basis: 100vh;
+}
+#left {
+  order: 1;
+  height: 100%;
+  width: 100%;
+  background: black;
+}
+#right {
+  order: 5;
+  height: 100%;
+  width: 100%;
+  background: black;
+}
+
 
 #textblock {
   pointer-events: none;
@@ -65,61 +65,40 @@
   opacity: 90%;  
   pointer-events: none;
 }
-/* .margin {
-  left: 0%;
-  background: #939597;
-  background: black;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  bottom: 0%;
-} */
-
-/* buttons */
 #btn-up {
   width: 100%;
-  position: absolute;
+  position: relative;
   top: 0%;
   height: 2%;
+  z-index: 1;
 }
 #btn-down {
   width: 100%;
-  position: absolute;
-  bottom: 0%;
+  position: relative;
+  top: 96%;
   height: 2%;
+  z-index: 1;
 }
-#btn-left {
-  height: 100%;
-  position: absolute;
-  left: 0%;
-  width: 2%;
-}
-#btn-right {
-  height: 100%;
-  position: absolute;
-  right: 0%;
-  width: 2%;
-}
-#btn-up img, #btn-down img, #btn-left img, #btn-right img {
-  height: 1vh;
-  position: absolute;
-}
+
 #btn-up img, #btn-down img {
-  top: 25%;
-  right: 49vh;
+  height: 1vh;
 }
-#btn-left img, #btn-right img {
-  top: 49vh;
+#btn-up img {
+  left: 50%;
+
+  transform-origin: 50% 50%;
 }
+#btn-down img, #btn-up img {
+  position: absolute;
+  left: 50%;
+  bottom: 25%;
+  transform-origin: 50% 50%;
+}
+
 #btn-up img {
   transform: rotate(180deg);
 }
-#btn-left img {
-  transform: rotate(90deg);
-}
-#btn-right img {
-  transform: rotate(270deg);
-}
+
 
 @keyframes blink {
   0% {background:white;}
@@ -138,22 +117,25 @@
   animation-duration: 600ms;
 }
 .btn-off {
-  /* background: red; */
   transition: all 600ms;
-  /* opacity: 0%; */
+}
+
+#border-right-enclosure {
+  order: 4;
+  padding-left: 1vh;
+  background: black;
+}
+#border-left-enclosure {
+  order: 2;
+  padding-right: 1vh;
+  background: black;
 }
 
 #border-left, #border-right {
   background: antiquewhite;
-  position: absolute;
+  position: relative;
   width: 0.2vw;
   height: 100%;
-}
-#border-left {
-  left: -1.7vh;
-}
-#border-right {
-  right: -1.7vh;
 }
 #border-left .dot-up, #border-left .dot-down {
   left: -1.5vh;
@@ -163,6 +145,7 @@
 }
 .dot-up, .dot-down {
   color: antiquewhite;
+  font-size: 0.66rem;
 }
 .dot-up {
   position: absolute;

@@ -1,0 +1,46 @@
+.margin-right {
+  top: 0;
+  background: black;
+  height: 100%;
+}
+
+#scanner {
+  color: antiquewhite;
+  margin-top: 25%;
+}
+#scanner-list {
+  text-align: center;
+  list-style: none;
+}
+
+#scanner-list li {
+  font-size: 0.75rem;
+}
+
+#info-box {
+  background: black;
+  margin-top: 10%;
+  margin-left: 25%;
+  width: 50%;
+  height: 15%;
+  overflow: auto;
+  border-style: solid;
+  border-color: antiquewhite;
+  border-radius: 1vh;
+  color: antiquewhite;
+}
+#info-wrapper {
+  display: flex;
+  padding: 3%;
+  flex-direction: column;
+  font-size: 0.5rem;
+
+}
+#info-box-list {
+  color: yellow;
+  list-style: none;
+}
+
+#info-wrapper li {
+  font-size: 0.5rem;
+}

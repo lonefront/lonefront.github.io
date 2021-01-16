@@ -2,17 +2,17 @@ import React from 'react'
 import './Header.css'
 
 import logo from '../../assets/svg/logotype.svg'
-// import line from '../../assets/svg/line.svg'
 import sigil from '../../assets/svg/sigil.svg'
 import tab from '../../assets/svg/tab-0.svg'
 import disc from '../../assets/svg/disc.svg'
 
 function Header(props) {
 
-  const array = ['phrase one', 'phrase two', 'phrase three', 'etc', 'and more', 'there this a much'];
+  const array = ['phrase one', 'phrase two', 'phrase three', 'etc', 'and more', 'there much'];
   const pageIndex = ['000', '001', '010', '011', '100', '101'];
 
   return (
+    <div id="header-wrapper">
     <div className="header">
       <div className="header-content">
       <img src={logo} alt="Lonefront" className="logotype"/>
@@ -36,11 +36,11 @@ function Header(props) {
             </div>
           </main>
           <hr className="line"/>
-          {/* <img src={line} alt="line" className="line"/> */}
       </div>
       <img src={disc} alt="center" className="disc"/>
     <div id="background"></div>
   </div>   
+    </div>
 );
 }
 
