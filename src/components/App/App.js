@@ -3,8 +3,8 @@ import { useMediaQuery } from 'react-responsive'
 import debounce from 'lodash/debounce'
 import './App.css';
 
-import donut from '../../assets/mp4/blue-donut.mp4'
-import donut24 from '../../assets/mp4/donut-24.mp4'
+import donut from '../../assets/mp4/blue-donut.mov'
+import donut24 from '../../assets/mp4/donut-24.mov'
 
 import nss01 from '../../assets/png/nss-01.png'
 import nss02 from '../../assets/png/nss-02.png'
