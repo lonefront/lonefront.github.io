@@ -252,7 +252,7 @@ function App() {
             <div id="btn-down" className={down ? 'btn-on' : 'btn-off'}>
                 <img src={arrow} alt="arrow" onClick={handleClick}/>
             </div>
-\          <Header activePg={activePg}/>
+           <Header activePg={activePg}/>
             <div id="p00" className="screen" onWheel={scroll}>
               <AudioPlayer/>
               <video className="anim" autoPlay muted loop>  
